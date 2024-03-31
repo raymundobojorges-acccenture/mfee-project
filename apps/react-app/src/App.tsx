@@ -6,8 +6,6 @@ import PostPage from './components/PostPage';
 function App() {
   return (
     <Grid container id="app" direction="column" height="100vh" flexWrap="nowrap">
-      {/* Activity 2 - Move all Container content to Header component */}
-
       <Grid item flexGrow={1}>
         <HomePage />
         <PostPage />
