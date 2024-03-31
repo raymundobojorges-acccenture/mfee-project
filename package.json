@@ -91,5 +91,8 @@
     "typescript": "~5.2.2",
     "vite": "^5.0.0",
     "vitest": "~0.34.6"
-  }
+  },
+  "description": "To start the development server you can run the following commands:",
+  "main": "jest.preset.js",
+  "author": ""
 }
