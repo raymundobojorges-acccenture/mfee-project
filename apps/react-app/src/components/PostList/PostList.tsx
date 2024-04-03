@@ -19,11 +19,7 @@ function PostList({ posts, handleOpenForm }: PostListProps) {
           <CardContainer>
             <CardContent>
               <h1>{post.title}</h1>
-              <h3>
-                {posts.length}
-                {/* Activity 4 - Render the word "Comments" if it contains more than one comment and "Comment" if there is only one */}
-                {' Comment'}
-              </h3>
+              <h3>{posts[1].comments.length > 1 ? `Comments [${posts[1].comments.length}]` : `Comment [${posts[1].comments.length}]`} </h3>
               <h3>{shorten(post.description, 70)}</h3>
               <Typography variant="overline">{post.category}</Typography>
             </CardContent>

@@ -13,9 +13,8 @@ function Comments( { comments }: CommentsProps ) {
       <Title item sm={8}>
         <h4>Comments</h4>
       </Title>
-       {/* Activity 4 - Render CommentCard only if comments array is greater than zero */}
       {/* Activity 5 - Iterate comments */}
-      <CommentCard comment={comments[0]}/>
+      { comments.length > 0 && < CommentCard comment={ comments[0] } /> }
     </Container>
   );
 }
