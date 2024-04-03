@@ -1,6 +1,7 @@
-import React, { createContext, useState, useCallback } from "react";
+import React, { createContext, useState, useCallback, useContext, useEffect } from "react";
 
 import { Post } from "../types";
+import { SnackbarContext } from './SnackbarProvider';
 
 interface PostContextProps {
   posts: Post[] | null;
@@ -67,6 +68,9 @@ export function PostProvider({
   const [serverData, setServerData] = useState(postList);
   const [posts, setPosts] = useState<Post[] | null>(postList);
 
+  const { createAlert } = useContext(SnackbarContext);
+
+
   const getPosts = useCallback(
     (category: string) => {
       const selectedCategory = serverData.filter(
@@ -74,7 +78,8 @@ export function PostProvider({
       );
       const newPosts = category === "All" ? serverData : selectedCategory;
       setPosts(newPosts);
-      // Activity 7 - Call to the createAlert function here. Include message and severity.
+      createAlert('success', 'Data uploaded');
+
     },
     [serverData]
   );

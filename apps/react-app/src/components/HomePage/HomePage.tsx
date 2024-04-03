@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
+import { Alert, Snackbar } from '@mui/material';
+
 import CreatePostButton from '../CreatePostButton';
 import CategoryButtonGroup from '../CategoryButtonGroup';
 import PostList from '../PostList';
 import { Post } from '../../types';
-
 import { PostContext } from '../../context';
 import Loading from '../Loading';
 
