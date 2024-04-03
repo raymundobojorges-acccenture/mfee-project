@@ -7,7 +7,7 @@ import { Post } from '../../types';
 import { CardActions, CardContainer, CardContent, PostCard } from './PostList.styles';
 
 interface PostListProps {
-  posts: Post[];
+  posts: Post[] | null;
   handleOpenForm: (defaultValues?: Post) => void;
 }
 
