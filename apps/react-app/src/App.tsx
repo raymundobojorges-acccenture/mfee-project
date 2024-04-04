@@ -1,6 +1,9 @@
 import { Grid, Typography } from '@mui/material';
 
 import { Container } from './components/Header/Header.styles';
+import HomePage from './components/HomePage/HomePage'
+import PostPage from "./components/PostPage/PostPage"
+
 
 function App() {
   return (
@@ -22,7 +25,9 @@ function App() {
       </Container>
 
       <Grid item flexGrow={1}>
-        {/* Activity 1 - Render HomePage and PostPage */}
+        {/* DONE Activity 1 - Render HomePage and PostPage */}
+        <HomePage/>
+        <PostPage/>
       </Grid>
     </Grid>
   );
