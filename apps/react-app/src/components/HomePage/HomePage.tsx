@@ -7,6 +7,7 @@ import PostList from '../PostList';
 import { Post } from '../../types';
 import { PostContext } from '../../context';
 import Loading from '../Loading';
+import Form from "../Form";
 
 function HomePage() {
   const {
@@ -14,11 +15,14 @@ function HomePage() {
     getPosts, 
     deletePost
   } = useContext(PostContext);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+  const [open, setOpen] = useState(false);
 
   const [categorySelected, setCategorySelected] = useState('All');
 
   const handleOpenForm = (defaultValues?: Post) => {
-    console.log(defaultValues);
+    setOpen(true);
+    if (defaultValues) setSelectedPost(defaultValues);
   };
 
   const handleSelectCategory = (category: string) => {
@@ -37,6 +41,12 @@ function HomePage() {
       <CreatePostButton handleOpenForm={handleOpenForm} />
       <CategoryButtonGroup categorySelected={categorySelected} handleCategorySelect={handleSelectCategory} />
       <PostList posts={posts} handleOpenForm={handleOpenForm} />
+      <Form
+        open={open}
+        post={selectedPost}
+        setOpen={setOpen}
+        setSelectedPost={setSelectedPost}
+      />
     </>
   );
 }
