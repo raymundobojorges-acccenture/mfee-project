@@ -8,7 +8,10 @@ const postImage =
 
 function Banner() {
   return (
-    <Container image={postImage}>
+    <Container
+      // Activity 3 - Replace string with postImage prop
+      image={""}
+    >
       <BannerContent>
         <Button sx={{ color: "white" }} startIcon={<ArrowBackIosIcon />}>
           View Posts

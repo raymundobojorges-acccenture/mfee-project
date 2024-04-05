@@ -1,7 +1,6 @@
 import { Title, Container } from "./Comments.styles";
 import CommentCard from "../CommentCard";
 
-
 function Comments() {
   return (
     <Container container>
@@ -10,6 +9,9 @@ function Comments() {
       </Title>
       {/* DONE Activity 1 - Render CommentCard */}
       <CommentCard/>
+      {/* Activity 4 - Render CommentCard only if comments array is greater than zero */}
+      {/* Activity 5 - Iterate comments */}
+      {/* Activity 3 - Send comment prop */}
     </Container>
   );
 }
