@@ -37,16 +37,16 @@ function PostPage() {
     <Container container>
       <BannerContainer item>
         {/* DONE Activity 1 - Render Banner */}
-        {/* Activity 3 - Send postImage and postTitle props*/}
-        <Banner />
+        {/* DONE Activity 3 - Send postImage and postTitle props*/}
+        <Banner post={post}/>
       </BannerContainer>
       <DescriptionContainer item>
         {/* DONE Activity 1 - Render post description */}
-        <p>{post.description}</p>
+        {post.description}
       </DescriptionContainer>
       <CommentsContainer item>
-        {/* Activity 3 - Send postComments prop*/}
-        <Comments />
+        {/* DONE Activity 3 - Send postComments prop*/}
+        <Comments comments={post.comments} />
       </CommentsContainer>
     </Container>
   );

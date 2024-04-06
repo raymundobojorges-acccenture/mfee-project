@@ -21,9 +21,13 @@ const categoryOptions = [
   },
 ];
 
-const categorySelected = "All"
+interface CategoryButtonGroupProps {
+  categorySelected: string;
+  handleSelectCategory: (category: string) => void;
+}
 
-function CategoryButtonGroup() {
+
+function CategoryButtonGroup({ categorySelected, handleSelectCategory }: CategoryButtonGroupProps) {
   return (
     <Container item>
       <ButtonGroup aria-label="category button group" color="inherit">
@@ -31,7 +35,7 @@ function CategoryButtonGroup() {
           <>
             {/* Activity 5 - Iterate categoryOptions */}
 
-              <StyledButton type="button"
+              <StyledButton key={category.key} type="button"
               // Activity 4 - Set a condition so that the props selected is true only if the option is selected. This value can be hardcoded in the following way: categoryOptions[0].name
               // Activity 5 - Replaces the hardcoded value "categoryOptions[0].name" with the variable obtained from the iteration and uses the variable "categorySelected" obtained from the props
               selected={!!categorySelected}
@@ -40,8 +44,8 @@ function CategoryButtonGroup() {
               }}
             >
               {/* Activity 5 - Render category name */}
-                  {/* DONE Activity 1 - Render category name */}
-                  <label key={category.key}> {category.name} </label>
+              {/* DONE Activity 1 - Render category name */}
+                <label> {category.name} </label>
               </StyledButton>
           </>
         )) }

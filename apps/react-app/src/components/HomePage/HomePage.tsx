@@ -47,23 +47,23 @@ const posts = [
 ];
 
 function HomePage() {
-  // const categorySelected = "All";
+  const categorySelected = "All";
 
   const handleOpenForm = (defaultValues?: Post) => {
     console.log(defaultValues);
   };
 
-  // const handleSelectCategory = (category: string) => {
-  //   console.log(category);
-  // };
+  const handleSelectCategory = (category: string) => {
+    console.log(category);
+  };
 
   return (
     <>
       {/* DONE Activity 1 - Render CreatePostButton, CategoryButtonGroup and PostList */}
-      {/* Activity 3 - Send handleOpenForm prop */}
-      <CreatePostButton />
-      {/* Activity 3 - Send categorySelected and handleSelectCategory props */}
-      <CategoryButtonGroup />
+      {/* DONE Activity 3 - Send handleOpenForm prop */}
+      <CreatePostButton handleOpenForm={handleOpenForm} />
+      {/* DONE Activity 3 - Send categorySelected and handleSelectCategory props */}
+      <CategoryButtonGroup categorySelected={categorySelected} handleSelectCategory={handleSelectCategory} />
       <PostList posts={posts} handleOpenForm={handleOpenForm} />
     </>
   );

@@ -28,21 +28,6 @@ function PostList({ posts, handleOpenForm }: PostListProps) {
           md={posts.length === 1 ? 12 : 6}
         >
           <CardContainer>
-          <CardContent>
-              <h1 key={post.id}>
-                {/* DONE Activity 1 - Render post title */}
-                { post.title }
-              </h1>
-              <h3>
-                {/* DONE Activity 1 - Render comments length */}
-                { `Comments ${post.comments.length}` }
-              </h3>
-              <h3>{shorten(post.description, 70)}</h3>
-              <Typography variant="overline">
-                {/* DONE Activity 1 - Render post category */}
-                { post.category }
-              </Typography>
-            </CardContent>
             <CardContent>
                 {/* DONE Activity 1 - Render post title */}
 

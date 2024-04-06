@@ -10,7 +10,18 @@ const comment = {
     "LoremAqui ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
 };
 
-function CommentCard() {
+interface Comment {
+  id: string;
+  author: string;
+  content: string;
+}
+
+interface CommentCardProps {
+  comment: Comment; // Definir la estructura del comentario
+}
+
+function CommentCard(props: CommentCardProps) {
+  const { comment } = props;
   return (
     <Container item sm={8}>
       <AccountCircleIcon />
