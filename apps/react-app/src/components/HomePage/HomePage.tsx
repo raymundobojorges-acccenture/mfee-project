@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import CategoryButtonGroup from "../CategoryButtonGroup";
 import CreatePostButton from "../CreatePostButton";
 import PostList from "../PostList";
@@ -7,10 +7,10 @@ import { PostContext } from "../../context";
 import Loading from "../Loading";
 
 function HomePage() {
-  const categorySelected = "All";
+  const [categorySelected, setCategorySelected] = useState("All");
   const {
     posts,
-    // getPosts
+    getPosts
   } = useContext(PostContext);
 
   const handleOpenForm = (defaultValues?: Post) => {
@@ -18,14 +18,16 @@ function HomePage() {
   };
 
   const handleSelectCategory = (category: string) => {
-    console.log(category);
-  };
-  // const handleSelectCategory = (category: string) => {
-  // getPosts(category)
-  // Activity 6 - Use the useState hook to handle the state of categorySelected
-  // };
+      //DONE Activity 6 - Use the useState hook to handle the state of categorySelected
 
-  // Activity 6 - Use the useEffect hook to call the getPosts function only when the component is rendered for the first time
+    setCategorySelected(category);
+  };
+
+  useEffect(() => {
+    getPosts(categorySelected);
+  }, [categorySelected, getPosts]);
+
+  // DONE Activity 6 - Use the useEffect hook to call the getPosts function only when the component is rendered for the first time
 
   if (!posts) return <Loading />;
 
