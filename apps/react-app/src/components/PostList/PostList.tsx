@@ -30,13 +30,12 @@ function PostList({ posts, handleOpenForm }: PostListProps) {
           <CardContainer>
             <CardContent>
                 {/* DONE Activity 1 - Render post title */}
-
               <h1> { post.title }</h1>
               <h3>
+                {/* DONE Activity 4 - Render the word "Comments" if it contains more than one comment and "Comment" if there is only one */}
                 {/* DONE Activity 1 - Render comments length */}
-                {/* Activity 4 - Render the word "Comments" if it contains more than one comment and "Comment" if there is only one */}
-                {/* DONE Activity 1 - Render comments length */}
-                { `Comments ${post.comments.length}` }
+                {`${post.comments.length > 1 ? 'Comments' : 'Comment'} ${post.comments.length}`}
+                
               </h3>
               <h3>{shorten(post.description, 70)}</h3>
               <Typography variant="overline">
