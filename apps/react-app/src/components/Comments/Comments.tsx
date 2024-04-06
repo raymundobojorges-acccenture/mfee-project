@@ -28,7 +28,7 @@ function Comments(comments: CommentsProps) {
         </>
       )}
       {/* DONE Activity 4 - Render CommentCard only if comments array is greater than zero */}
-      {/* Activity 5 - Iterate comments */}
+      {/* DONE Activity 5 - Iterate comments */}
       {/* DONE Activity 3 - Send comment prop */}
     </Container>
   );
