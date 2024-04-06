@@ -17,8 +17,7 @@ function HomePage() {
   } = useContext(PostContext);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [open, setOpen] = useState(false);
-
-  const [categorySelected, setCategorySelected] = useState('All');
+  const categorySelected = "All";
 
   const handleOpenForm = (defaultValues?: Post) => {
     setOpen(true);
@@ -33,7 +32,7 @@ function HomePage() {
     getPosts(categorySelected);
   }, [categorySelected]);
 
-  if (!posts) return <Loading />;
+ // if (!posts) return <Loading />;
 
 
   return (
@@ -44,6 +43,7 @@ function HomePage() {
       <Form
         open={open}
         post={selectedPost}
+        categorySelected={categorySelected}
         setOpen={setOpen}
         setSelectedPost={setSelectedPost}
       />

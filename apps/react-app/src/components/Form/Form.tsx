@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import { useContext } from "react";
 import {
   Button,
   TextField,
@@ -11,49 +12,44 @@ import {
   FormControl,
   Select,
   SelectChangeEvent,
-  FormHelperText,
-} from "@mui/material";
+  FormHelperText
+} from '@mui/material';
+import { AxiosError, AxiosResponse } from 'axios';
 
-import { Post } from "../../types";
-import { validator } from "../../utils";
-import { PostContext } from "../../context";
-import { FormInputs } from "../../types";
+import axios from '../../api/axios';
+
+import { Post } from '../../types';
+import { validator } from '../../utils';
+import { PostContext } from '../../context';
+import { FormInputs } from '../../types';
+import { SnackbarContext } from '../../context';
 
 const emptyInputs: FormInputs = {
-  title: { value: "", error: "" },
-  description: { value: "", error: "" },
-  category: { value: "", error: "" },
-  image: { value: "", error: "" },
+  title: { value: '', error: '' },
+  description: { value: '', error: '' },
+  category: { value: '', error: '' },
+  image: { value: '', error: '' }
 };
 
 interface FormProps {
   open: boolean;
   post?: Post | null;
-  // categorySelected: string;
+  categorySelected: string;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedPost: (value: React.SetStateAction<Post | null>) => void;
 }
 
-const Form = ({
-  open,
-  post,
-  // categorySelected,
-  setOpen,
-  setSelectedPost,
-}: FormProps) => {
+const Form = ({ open, post, categorySelected, setOpen, setSelectedPost }: FormProps) => {
   const [formData, setFormData] = React.useState(emptyInputs);
-  const {
-    // getPosts,
-    createOrUpdatePost,
-  } = React.useContext(PostContext);
+  const { getPosts } = React.useContext(PostContext);
 
   React.useEffect(() => {
     if (!post) return;
     const existingPost = {
-      title: { value: post.title, error: "" },
-      description: { value: post.description, error: "" },
-      category: { value: post.category, error: "" },
-      image: { value: post.image, error: "" },
+      title: { value: post.title, error: '' },
+      description: { value: post.description, error: '' },
+      category: { value: post.category, error: '' },
+      image: { value: post.image, error: '' }
     };
     setFormData(existingPost);
   }, [post]);
@@ -71,42 +67,51 @@ const Form = ({
     const containError = inputs.map((input) => input.error).some((v) => !!v);
     if (containError) return;
 
+    const { createAlert } = useContext(SnackbarContext);
+
+
     const newPost: Post = {
       id: post?.id ?? Math.random().toString(),
       title: formData.title.value,
       image: formData.image.value,
       description: formData.description.value,
       category: formData.category.value,
-      comments: post?.comments ?? [],
+      comments: post?.comments ?? []
     };
 
-    createOrUpdatePost({ method: post ? "patch" : "post", newPost });
-    // getPosts(categorySelected);
-    handleClose();
+    axios({
+      method: post ? 'patch' : 'post',
+      url: post ? `/${post.id}` : undefined,
+      signal: AbortSignal.timeout(5000),
+      data: newPost
+    })
+      .then((response: AxiosResponse) => {
+        if (response.status === 200 || response.status === 201) {
+          getPosts(categorySelected);
+          handleClose();
+          createAlert('success', 'error');
+        }
+      })
+      .catch((error: AxiosError) => {
+        console.error(`${error}`);
+        createAlert('error', 'error');
+      });
   };
 
-  const handleChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-      | SelectChangeEvent
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: { value, error: "" },
+      [name]: { value, error: '' }
     }));
   };
 
-  const handleBlur = (
-    e:
-      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-      | SelectChangeEvent
-  ) => {
+  const handleBlur = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent) => {
     const { name, value } = e.target;
     const error = validator({ name, value });
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: { ...prevFormData[name as keyof FormInputs], error },
+      [name]: { ...prevFormData[name as keyof FormInputs], error }
     }));
   };
 
@@ -115,8 +120,8 @@ const Form = ({
       open={open}
       onClose={handleClose}
       PaperProps={{
-        component: "form",
-        onSubmit: hanldeSubmit,
+        component: 'form',
+        onSubmit: hanldeSubmit
       }}
     >
       <DialogTitle variant="h5" textAlign="center">
@@ -137,7 +142,7 @@ const Form = ({
           sx={{ paddingBottom: 2 }}
           value={formData.title.value}
           error={!!formData.title.error}
-          helperText={formData.title.error ?? " "}
+          helperText={formData.title.error ?? ' '}
         />
         <TextField
           required
@@ -153,7 +158,7 @@ const Form = ({
           sx={{ paddingBottom: 2 }}
           value={formData.description.value}
           error={!!formData.description.error}
-          helperText={formData.description.error ?? " "}
+          helperText={formData.description.error ?? ' '}
         />
         <FormControl fullWidth sx={{ paddingBottom: 2 }}>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
@@ -170,9 +175,9 @@ const Form = ({
             value={formData.category.value}
             error={!!formData.category.error}
           >
-            <MenuItem value={"Health"}>Health</MenuItem>
-            <MenuItem value={"Travel"}>Travel</MenuItem>
-            <MenuItem value={"Sports"}>Sports</MenuItem>
+            <MenuItem value={'Health'}>Health</MenuItem>
+            <MenuItem value={'Travel'}>Travel</MenuItem>
+            <MenuItem value={'Sports'}>Sports</MenuItem>
           </Select>
           <FormHelperText>{formData.category.error}</FormHelperText>
         </FormControl>
@@ -190,7 +195,7 @@ const Form = ({
           sx={{ paddingBottom: 2 }}
           value={formData.image.value}
           error={!!formData.image.error}
-          helperText={formData.image.error ?? " "}
+          helperText={formData.image.error ?? ' '}
         />
       </DialogContent>
       <DialogActions>

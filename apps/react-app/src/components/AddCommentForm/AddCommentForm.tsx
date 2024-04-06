@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { TextField, Button } from '@mui/material';
 
-function AddCommentForm() {
+function AddCommentForm({ post }) {
+
   const {
     register,
     handleSubmit,
@@ -10,6 +11,8 @@ function AddCommentForm() {
 
   const onSubmit = (data) => {
     console.log(data); 
+    console.log('Comment data:', data);
+    console.log('Post data:', post); 
   };
 
   return (

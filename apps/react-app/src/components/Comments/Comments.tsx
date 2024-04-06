@@ -4,7 +4,7 @@ import { Comment } from '../../types';
 import AddCommentForm from '../AddCommentForm';
 
 interface CommentsProps {
-  comments: Comment[];
+  comments?: Comment[];
 }
 
 function Comments({ comments }: CommentsProps) {
@@ -13,12 +13,12 @@ function Comments({ comments }: CommentsProps) {
       <Title item sm={8}>
         <h4>Comments</h4>
       </Title>
-      {comments.length > 0 &&
-        comments.map((comment: Comment) => {
+      {comments && comments.length > 0 &&
+        comments?.map((comment: Comment) => {
           return <CommentCard key={comment.id} comment={comment} />;
         })}
          <FormContainer item sm={8}>
-        <AddCommentForm />
+        {/* <AddCommentForm /> */}
       </FormContainer>
     </Container>
   );
