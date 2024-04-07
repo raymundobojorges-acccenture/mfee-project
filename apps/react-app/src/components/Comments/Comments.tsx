@@ -28,6 +28,9 @@ function Comments(comments: CommentsProps) {
           ))}
         </>
       )}
+      <FormContainer item sm={8}>
+        <AddCommentForm />
+      </FormContainer>
       {/* DONE Activity 4 - Render CommentCard only if comments array is greater than zero */}
       {/* DONE Activity 5 - Iterate comments */}
       {/* DONE Activity 3 - Send comment prop */}
