@@ -1,8 +1,8 @@
 import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
 
-import { Container } from "./CreatePostButton.styles";
 import { Post } from "../../types";
+import { Container } from "./CreatePostButton.styles";
 
 interface CreatePostButtonProps {
   handleOpenForm: (defaultValues?: Post) => void; // Definir el tipo de la función handleOpenForm

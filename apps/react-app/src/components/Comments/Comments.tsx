@@ -1,5 +1,6 @@
-import { Title, Container } from "./Comments.styles";
+import { Title, Container, FormContainer } from "./Comments.styles";
 import CommentCard from "../CommentCard";
+import AddCommentForm from "../AddCommentForm";
 
 interface Comment {
   id: string;

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 
 import { Post } from "../types";
 import { SnackbarContext } from "./SnackbarProvider";
@@ -7,6 +7,13 @@ interface PostContextProps {
   posts: Post[] | null;
   getPosts: (category: string) => void;
   deletePost: (postId: string) => void;
+  createOrUpdatePost: ({
+    method,
+    newPost,
+  }: {
+    method: "post" | "patch";
+    newPost: Post;
+  }) => void;
 }
 
 interface PostProviderProps {
@@ -17,6 +24,7 @@ export const PostContext = createContext<PostContextProps>({
   posts: [] || null,
   getPosts: () => {},
   deletePost: () => {},
+  createOrUpdatePost: () => {},
 });
 
 const postList = [
@@ -65,8 +73,22 @@ const postList = [
 export function PostProvider({
   children,
 }: PostProviderProps): React.JSX.Element {
-  const [serverData, setServerData] = useState(postList);
+  const [serverData, setServerData] = useState<Post[]>(postList);
   const [posts, setPosts] = useState<Post[] | null>(postList);
+  const [updateData, setUpdateData] = useState(false);
+
+  const createOrUpdatePost = useCallback(
+    ({ method, newPost }: { method: "post" | "patch"; newPost: Post }) => {
+      if (method === "post") setServerData((prev) => [...prev, newPost]);
+      if (method === "patch") {
+        setServerData((prev) =>
+          prev.map((post) => (post.id === newPost.id ? newPost : post))
+        );
+      }
+      setUpdateData(true);
+    },
+    [setUpdateData]
+  );
 
   // Obteniendo el contexto de Snackbar
   const snackbarContext = useContext(SnackbarContext);
@@ -91,10 +113,16 @@ export function PostProvider({
         const filteredList = prev.filter((post: Post) => post.id !== postId);
         return filteredList;
       });
-      getPosts("All");
+      setUpdateData(true);
     },
-    [getPosts]
+    [setUpdateData]
   );
+
+  useEffect(() => {
+    if (!updateData) return;
+    setUpdateData(false);
+    getPosts("All");
+  }, [updateData, getPosts]);
 
   return (
     <PostContext.Provider
@@ -102,6 +130,7 @@ export function PostProvider({
         posts,
         getPosts,
         deletePost,
+        createOrUpdatePost,
       }}
     >
       {children}
