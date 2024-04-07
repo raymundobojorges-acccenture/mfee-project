@@ -1,6 +1,8 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { TextField, Button } from '@mui/material';
+import axios from "../../api/axios";
+
 
 interface CommentFormData {
   author: string;
@@ -10,8 +12,13 @@ interface CommentFormData {
 function AddCommentForm() {
   const { control, handleSubmit, formState: { errors } } = useForm<CommentFormData>();
 
-  const onSubmit = (data: CommentFormData) => {
-    console.log(data);
+    const onSubmit = async (data: CommentFormData) => {
+    try {
+      const response = await axios.post('/', data); 
+      console.log('Comment created:', response.data);
+    } catch (error) {
+      console.error('Error creating comment:', error);
+    }
   };
 
   return (

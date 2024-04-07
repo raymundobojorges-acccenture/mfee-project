@@ -40,7 +40,7 @@ export function PostProvider({
         snackbarContext.createAlert('success', "Post cargados");
       })
       .catch((error: AxiosError) => {
-        // Activity 9 - Use createAlert function to show a notification with error message
+        // DONE Activity 9 - Use createAlert function to show a notification with error message
         snackbarContext.createAlert('error', "Post NO cargados");
         console.error(`${error}`);
       });
@@ -56,11 +56,15 @@ export function PostProvider({
         .then((response: AxiosResponse) => {
           if (response.status === 200 || response.status === 201) {
             getPosts("All");
-            // Activity 9 - Use createAlert function to show a notification with success message
+            snackbarContext.createAlert('success', "Post eliminado");
+
+            //DONE Activity 9 - Use createAlert function to show a notification with success message
           }
         })
         .catch((error: AxiosError) => {
-          // Activity 9 - Use createAlert function to show a notification with success message
+          //DONE Activity 9 - Use createAlert function to show a notification with success message
+          snackbarContext.createAlert('error', "Post NO eliminado");
+
           console.error(`${error}`);
         });
     },

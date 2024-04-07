@@ -18,8 +18,10 @@ import { AxiosError, AxiosResponse } from "axios";
 import axios from "../../api/axios";
 import { Post } from "../../types";
 import { validator } from "../../utils";
-import { PostContext } from "../../context";
+import { PostContext, SnackbarContext } from "../../context";
 import { FormInputs } from "../../types";
+import { useContext } from "react";
+
 
 const emptyInputs: FormInputs = {
   title: { value: "", error: "" },
@@ -78,6 +80,7 @@ const Form = ({
       category: formData.category.value,
       comments: post?.comments ?? [],
     };
+    const snackbarContext = useContext(SnackbarContext);
 
     axios({
       method: post ? "patch" : "post",
@@ -89,11 +92,15 @@ const Form = ({
         if (response.status === 200 || response.status === 201) {
           getPosts(categorySelected);
           handleClose();
-          // Activity 9 - Use createAlert function to show a notification with success message
+          snackbarContext.createAlert('success', "Post editado");
+
+          // DONE Activity 9 - Use createAlert function to show a notification with success message
         }
       })
       .catch((error: AxiosError) => {
-        // Activity 9 - Use createAlert function to show a notification with error message
+        // DONE Activity 9 - Use createAlert function to show a notification with error message
+        snackbarContext.createAlert('error', "Post NO editado");
+
         console.error(`${error}`);
       });
   };
