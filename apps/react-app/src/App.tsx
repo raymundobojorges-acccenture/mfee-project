@@ -1,29 +1,15 @@
-import { Grid } from "@mui/material";
-
-import { SnackbarProvider } from "./context/SnackbarProvider"; 
+import { RouterProvider } from "react-router-dom";
+import { SnackbarProvider } from "./context/SnackbarProvider";
+import Router from "./components/Router";
 import { PostProvider } from "./context";
-import HomePage from './components/HomePage/HomePage';
-import PostPage from "./components/PostPage/PostPage";
-import Header from './components/Header/Header';
 
 function App() {
   return (
+    // Activity 7 - Render SnackbarProvider
     <SnackbarProvider>
-      <PostProvider>
-        <Grid
-          container
-          id="app"
-          direction="column"
-          height="100vh"
-          flexWrap="nowrap"
-        >
-          <Header/>
-          <Grid item flexGrow={1}>
-            <HomePage/>
-            <PostPage/>
-          </Grid>
-        </Grid>
-      </PostProvider>
+    <PostProvider>
+      <RouterProvider router={Router} />
+    </PostProvider>
     </SnackbarProvider>
   );
 }
