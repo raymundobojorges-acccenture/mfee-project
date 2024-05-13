@@ -1,7 +1,9 @@
 <template>
   <div class="col-md-6 mt-5">
     <form>
+      <!-- Activity 11: Adding data binding */ -->
       <input type="text" class="form-control" placeholder="Write a comment" />
+
       <span class="form-text text-danger"> Error </span>
     </form>
   </div>
