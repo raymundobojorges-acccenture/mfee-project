@@ -23,14 +23,20 @@
       <div class="container m-5">
         <p class="fs-5">Post Description</p>
         <!-- Activity 7: Render components: Render CommentList from /components folder */ -->
+        <CommentList />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import CommentList from '../components/CommentList.vue';
 export default {
+  components: {
+    CommentList
+  },
   /*   Activity 5: Add created hook */
+  created() {}
 };
 </script>
 

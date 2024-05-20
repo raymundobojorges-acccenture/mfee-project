@@ -15,7 +15,7 @@
     
     
     
-        <PostItem/>
+        <PostItem v-for="post in posts"/>
     
     
     
@@ -102,6 +102,9 @@ export default {
         }
       ]
     };
+  },
+  created() {
+
   }
   /*   Activity 5: Add created hook */
 };

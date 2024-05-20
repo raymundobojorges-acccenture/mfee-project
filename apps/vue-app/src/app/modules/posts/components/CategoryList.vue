@@ -3,7 +3,7 @@
     
     <div class="btn-group" role="group">
     
-        <CategoryItem/>
+        <CategoryItem v-for="(name, id) in categories"/>
     
     </div>
 </template>
@@ -36,7 +36,10 @@ export default {
         }
       ]
     };
-  }
+  },
   /*   Activity 5: Add created hook */
+  created() {
+
+  }
 };
 </script>
