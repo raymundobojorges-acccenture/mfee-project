@@ -25,7 +25,7 @@ https://vuelidate-next.netlify.app/
 ## Render PostView.vue component
 
 1. Existe un archivo llamado **PostView.html**, copia y pega su contenido en el template de **PostView.vue**. Elimina el archivo html
-2. Del archivo **PostView.css** copia su contenido y pégalo dentro del style de **PostView.vue**
+2. Del archivo **PostView.css** copia su contenido y pégalo dentro del style de **HeaderPost.vue**
 3. Elimina el archivo css
 4. Rederiza este componente en **PostLayout.vue**
 
