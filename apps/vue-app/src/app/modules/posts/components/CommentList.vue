@@ -2,8 +2,8 @@
   <div class="container row mt-5 d-flex flex-column align-items-center">
     <p class="text-center fs-5"><strong> Comments </strong></p>
     <!-- Activity 7: Render components: Render CommentItem from /components folder */ -->
-    <CommentItem v-for="comment in comments" :key="comment" />
-    <div class="alert alert-warning m-3" role="alert">There are not results.</div>
+    <CommentItem v-for="comment in comments" :key="comment" v-show="thereAreComments" />
+    <div class="alert alert-warning m-3" role="alert" v-show="!thereAreComments">There are not results.</div>
     <!-- Activity 7: Render components: Render NewComment from /components folder */ -->
     <NewComment />
   </div>
@@ -22,6 +22,11 @@ export default {
       /*   Activity 8: Add v-for directive: Use this array to iterate <CommentItem> in the template */
       comments: ['1st comment', '2do comment', '3td comment']
     };
+  },
+  computed: {
+    thereAreComments() {
+      return this.comments.length > 0;
+    }
   }
 };
 </script>

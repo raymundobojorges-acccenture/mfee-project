@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h5 class="modal-title">Action Post</h5>
+          <h5 class="modal-title">{{ action }} Post</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -46,7 +46,11 @@
 export default {
   /*   Activity 5: Add created hook */
   /*   Activity 6: Add unmounted hook */
-
+  data() {
+    return {
+      action: 'Create'
+    };
+  },
   created() {}
 };
 </script>

@@ -5,7 +5,7 @@
     <!-- Activity 4: Render PostItem component -->
     <PostItem v-for="post in posts" :key="post.id" />
   </div>
-  <div class="alert alert-warning m-3" role="alert">There are not results.</div>
+  <div class="alert alert-warning m-3" role="alert" v-if="!thereArePosts">There are not results.</div>
 </template>
 
 <script>
@@ -84,6 +84,11 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    thereArePosts() {
+      return this.posts.length > 0;
+    }
   },
   created() {}
 };
