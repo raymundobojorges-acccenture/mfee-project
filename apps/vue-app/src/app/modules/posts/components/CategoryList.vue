@@ -1,7 +1,7 @@
 <template>
   <!-- Inicio CategoriesList.vue -->
   <div class="btn-group" role="group">
-    <CategoryItem />
+    <CategoryItem v-for="category in categories" :key="category.id" />
   </div>
 </template>
 
@@ -11,6 +11,30 @@ import CategoryItem from './CategoryItem.vue';
 export default {
   components: {
     CategoryItem
-  }
+  },
+  data() {
+    return {
+      /*   Activity 8: Add v-for directive: Use this array to iterate <CategoryItem> in the template */
+      categories: [
+        {
+          id: 2,
+          name: 'Travel'
+        },
+        {
+          id: 3,
+          name: 'Lifecycle'
+        },
+        {
+          id: 4,
+          name: 'Business'
+        },
+        {
+          id: 5,
+          name: 'Work'
+        }
+      ]
+    };
+  },
+  created() {}
 };
 </script>
