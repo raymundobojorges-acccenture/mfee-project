@@ -38,7 +38,7 @@ https://vuelidate-next.netlify.app/
 1. **CategoryItem**: Has uso de **Class binding** en el elemento **button** para añadir de clase **active**, déjala por defecto en false por ahora.
 2. **NewComment**: Has uso de **Class binding** en el elemento **input** para añadir de clase **is-invalid**, déjala por defecto en false por ahora.
 3. **HeaderPost**: Crea una varibale que guarde el contenido del **h6** y otra para el **h1**, y has uso de **Text interpolation** para mostrar cada variable.
-4. **PostForm**: Crea una variable con **"Create"** como valor por defecto, usa **Text interpolation** para mostrar la variable en el **h5**, Nota: deja el string "Post" al final como estático.
+4. **PostForm**: Usa **Text interpolation** para mostrar la variable **action** en el **h5**, Nota: deja el string **"Post"** al final como estático.
 
 ## Render PostForm component
 
