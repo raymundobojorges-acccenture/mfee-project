@@ -27,3 +27,17 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.sub-title {
+  color: #f0a441;
+  font-weight: 300;
+}
+.create-post {
+  height: 20px;
+  color: #f0a441;
+}
+.create-post:hover {
+  cursor: pointer;
+}
+</style>
