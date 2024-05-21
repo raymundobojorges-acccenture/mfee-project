@@ -18,6 +18,8 @@ https://vuelidate-next.netlify.app/
 
 # Activities Session 02
 
+**Nota:** En estas actividades encontrarás archivos nuevos (**PostForm.vue**, **PostDetailView.vue**, **CommentItem.vue**, **NewComment.vue** y **CommentList.vue**), copia todo su contenido en tu proyecto (revisa que lo copies en el mismo path) y realiza la actividad indicada.
+
 ## Add created hook
 
 1. Añade el hook **created()** en los componentes que indica
