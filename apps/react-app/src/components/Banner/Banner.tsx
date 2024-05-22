@@ -8,7 +8,8 @@ const postImage = "https://lp-cms-production.imgix.net/2023-08/shutterstock10460
 
 function Banner() {
   return (
-    <Container image={postImage}>
+    <Container image={""}>
+      {/* ACT 3 - Send postImage as image prop to Container component */}
       <BannerContent>
         <Button sx={{ color: "white" }} startIcon={<ArrowBackIosIcon />}>
           View Posts

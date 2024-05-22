@@ -28,13 +28,19 @@ function PostPage() {
   return (
     <Container container>
       <BannerContainer item>
+        {/* ACT 1 - Render Banner component */}
         <Banner></Banner>
+        {/* ACT 3 - Send postImage and postTitle as props to Banner component */}
       </BannerContainer>
+
       <DescriptionContainer item>
+        <p>{/* ACT 1 - Render post description */}</p>
         <p>{post.description}</p>
       </DescriptionContainer>
       <CommentsContainer item>
+        {/* ACT 1 - Render Comments component */}
         <Comments></Comments>
+        {/* ACT 3 - Send comments as prop to Comments component */}
       </CommentsContainer>
     </Container>
   );

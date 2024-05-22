@@ -12,6 +12,8 @@ const comment = {
   __v: "01",
 };
 
+// ACT 3 - Receive comment prop
+
 function CommentCard() {
   return (
     <Container item sm={8}>
