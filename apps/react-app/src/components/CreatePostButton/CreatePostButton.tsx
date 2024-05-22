@@ -2,11 +2,16 @@ import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
 
 import { Container } from "./CreatePostButton.styles";
+import { Post } from "../../types";
 
-const CreatePostButton = () => {
+interface CreatePostButtonInterface{
+  handleOpenForm: (defaultValues?: Post) => void;
+}
+
+const CreatePostButton = ({ handleOpenForm }: CreatePostButtonInterface) => {
   return (
     <Container item>
-      <IconButton color="primary">
+      <IconButton color="primary" onClick={ () =>{ handleOpenForm() }}>
         <EditIcon />
       </IconButton>
     </Container>

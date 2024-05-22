@@ -1,42 +1,58 @@
-import { ButtonGroup } from "@mui/material";
+import { ButtonGroup } from '@mui/material';
 
-import { Container, StyledButton } from "./CategoryButtonGroup.styles";
+import { Container, StyledButton } from './CategoryButtonGroup.styles';
+import { Post } from '../../types';
 
-// const categoryOptions = [
-//   {
-//     key: "all",
-//     name: "All",
-//   },
-//   {
-//     key: "healt",
-//     name: "Health",
-//   },
-//   {
-//     key: "travel",
-//     name: "Travel",
-//   },
-//   {
-//     key: "sports",
-//     name: "Sports",
-//   },
-// ];
+interface CategoryButtonGroupProps {
+  categorySelected: string;
+  handleCategorySelect: (category: string) => void;
+}
 
-function CategoryButtonGroup() {
+interface Category {
+  key: string;
+  name: string;
+}
+
+const categoryOptions = [
+  {
+    key: 'all',
+    name: 'All'
+  },
+  {
+    key: 'healt',
+    name: 'Health'
+  },
+  {
+    key: 'travel',
+    name: 'Travel'
+  },
+  {
+    key: 'sports',
+    name: 'Sports'
+  }
+];
+
+// const categorySelected = 'All';
+
+function CategoryButtonGroup({ categorySelected, handleCategorySelect }: CategoryButtonGroupProps) {
   return (
     <Container item>
       <ButtonGroup aria-label="category button group" color="inherit">
-        <StyledButton type="button" selected={false}>
-          {/* Activity 1 - Render category name */}
-        </StyledButton>
-        <StyledButton type="button" selected={false}>
-          {/* Activity 1 - Render category name */}
-        </StyledButton>
-        <StyledButton type="button" selected={false}>
-          {/* Activity 1 - Render category name */}
-        </StyledButton>
-        <StyledButton type="button" selected={false}>
-          {/* Activity 1 - Render category name */}
-        </StyledButton>
+        {categoryOptions.map((category: Category) => {
+          return (
+            <StyledButton
+              type="button"
+              key={category.key}
+              selected={category.name === categorySelected}
+              onClick={() => {
+                handleCategorySelect(category.name);
+              }}
+            >
+              {category.name}
+            </StyledButton>
+          );
+        })}
+        ;
       </ButtonGroup>
     </Container>
   );
