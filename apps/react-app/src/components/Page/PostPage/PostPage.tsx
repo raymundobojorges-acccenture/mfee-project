@@ -20,6 +20,14 @@ const post = {
       updatedAt: "2024",
       __v: "000",
     },
+    {
+      _id: "02",
+      author: "Jhon",
+      content: "this is other comment example.",
+      createdAt: "2024",
+      updatedAt: "2024",
+      __v: "000",
+    },
    ],
    description: "Parque impresionante en un entorno boscoso, famoso por sus senderos naturales y un observatorio en la montaña.",
  };
