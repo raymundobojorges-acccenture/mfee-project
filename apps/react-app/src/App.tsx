@@ -6,6 +6,9 @@ import NavBar from "./components/NavBar";
 
 function App() {
   const page: string = "HomePage";
+  const showPostPage: boolean = true;
+  const showCategoriesPage: boolean = false;
+  const showLoginPage: boolean = false;
   return (
     <Grid container id="app" direction="column" height="100vh" wrap="nowrap">
         <NavBar />
@@ -21,11 +24,11 @@ function App() {
         >
           {page === "HomePage" && <HomePage />}
           {/* ACT 1 - Render PostPage and CategoriesPage components */}
-          <PostPage/>
-          <CategoriesPage/>
+          { showPostPage ?  <PostPage/> : '' }
+          { showCategoriesPage ? <CategoriesPage/> : '' }
           {/* ACT 2 - Move the following content to a new component called LoginPage and render it*/}
           {/* ACT 4 - Add conditions to render PostPage, LoginPage and CategoriesPage components */}
-          <LoginPage></LoginPage>
+          { showLoginPage ? <LoginPage/> : '' }
           {/* <PageContainer container>
             Login Page
             <Grid item md={4} xs={4} lg={4}>
