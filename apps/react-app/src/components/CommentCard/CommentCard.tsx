@@ -3,18 +3,20 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import { Container, Content, Author } from "./CommentCard.styles";
 
-const comment = {
-  _id: "01",
-  author: "amador",
-  content: "this is awesome!",
-  createdAt: "2024-05-17",
-  updatedAt: "2024-05-17",
-  __v: "01",
-};
+type  CommentType = {
+  comment: {
+    _id: string,
+    author: string,
+    content: string,
+    createdAt: string,
+    updatedAt: string,
+    __v: string,
+  }
+}
 
 // ACT 3 - Receive comment prop
 
-function CommentCard() {
+function CommentCard({comment}: CommentType) {
   return (
     <Container item sm={8}>
       <AccountCircleIcon />

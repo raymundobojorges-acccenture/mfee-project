@@ -3,20 +3,16 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 import { BannerContent, BannerTitle, Container } from "./Banner.styles";
 
-const postImage = "https://lp-cms-production.imgix.net/2023-08/shutterstock1046018665.jpg?auto=format&w=1920&h=640&fit=crop&crop=faces,edges&q=75";
- const postTitle = "Ciudad de las montañas";
-
-function Banner() {
+// ACT 3 - Receive postImage and postTitle props
+function Banner({postImage, postTitle}:{postImage : string, postTitle: string }) {
   return (
-    <Container image={""}>
+    <Container image={postImage}>
       {/* ACT 3 - Send postImage as image prop to Container component */}
       <BannerContent>
         <Button sx={{ color: "white" }} startIcon={<ArrowBackIosIcon />}>
           View Posts
         </Button>
-        <BannerTitle variant="h3">
-          {postTitle}
-        </BannerTitle>
+        <BannerTitle variant="h3">{/* ACT 1 - Render postTitle */} {postTitle}</BannerTitle>
       </BannerContent>
     </Container>
   );

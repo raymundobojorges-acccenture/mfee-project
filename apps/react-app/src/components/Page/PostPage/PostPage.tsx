@@ -29,8 +29,8 @@ function PostPage() {
     <Container container>
       <BannerContainer item>
         {/* ACT 1 - Render Banner component */}
-        <Banner></Banner>
         {/* ACT 3 - Send postImage and postTitle as props to Banner component */}
+        <Banner postImage={post.image} postTitle={post.title} ></Banner>
       </BannerContainer>
 
       <DescriptionContainer item>
@@ -39,8 +39,8 @@ function PostPage() {
       </DescriptionContainer>
       <CommentsContainer item>
         {/* ACT 1 - Render Comments component */}
-        <Comments></Comments>
         {/* ACT 3 - Send comments as prop to Comments component */}
+        <Comments comments={post.comments}></Comments>
       </CommentsContainer>
     </Container>
   );

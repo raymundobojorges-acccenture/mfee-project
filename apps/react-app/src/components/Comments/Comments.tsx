@@ -3,15 +3,26 @@ import { Title, Container, FormContainer } from "./Comments.styles";
 
 // ACT 3 - Receive comments prop
 
-function Comments() {
+type  CommentType = {
+  comments: {
+    _id: string,
+    author: string,
+    content: string,
+    createdAt: string,
+    updatedAt: string,
+    __v: string,
+  }[]
+}
+
+function Comments({comments}: CommentType) {
   return (
     <Container container>
-      <Title item sm={8}>
+      <Title item sm={8}>   
         <h4>Comments</h4>
       </Title>
       {/* ACT 1 = Render CommentCard component */}
-      <CommentCard></CommentCard>
       {/* ACT 3 - Send one comment (comments[0]) as prop to CommentCard component */}
+      <CommentCard comment={comments[0]}></CommentCard>
       {/* ACT 5 - Iterate comments to render CommentCard component for each comment */}
       <FormContainer item sm={8}>
         Form
