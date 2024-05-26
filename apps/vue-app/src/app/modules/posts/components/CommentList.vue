@@ -2,7 +2,7 @@
   <div class="container row mt-5 d-flex flex-column align-items-center">
     <p class="text-center fs-5"><strong> Comments </strong></p>
     <!-- Activity 7: Render components: Render CommentItem from /components folder */ -->
-    <CommentItem v-for="comment in comments" :key="comment" v-show="thereAreComments" />
+    <CommentItem v-for="comment in comments" :key="comment" v-show="thereAreComments" :comment="comment" />
     <div class="alert alert-warning m-3" role="alert" v-show="!thereAreComments">There are not results.</div>
     <!-- Activity 7: Render components: Render NewComment from /components folder */ -->
     <NewComment />

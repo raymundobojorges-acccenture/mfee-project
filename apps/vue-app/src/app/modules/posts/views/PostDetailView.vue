@@ -5,7 +5,7 @@
         <img src="https://cdn.pixabay.com/photo/2017/02/22/17/06/wave-2089959_960_720.jpg" class="card-img" />
         <div class="card-img-overlay">
           <div class="d-flex justify-content-start align-items-center ms-4">
-            <i class="fa-solid fa-chevron-left me-2"></i>
+            <i class="fa-solid fa-chevron-left me-2" @click="this.$router.back()"></i>
             <span>View Posts</span>
           </div>
         </div>
@@ -32,6 +32,9 @@
 <script>
 import CommentList from '../components/CommentList.vue';
 export default {
+  props: {
+    id: String
+  },
   /*   Activity 5: Add created hook */
   components: {
     CommentList

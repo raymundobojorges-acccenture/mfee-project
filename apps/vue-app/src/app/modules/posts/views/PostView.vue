@@ -3,7 +3,7 @@
   <HeaderPost />
   <div class="row pt-5">
     <!-- Activity 4: Render PostItem component -->
-    <PostItem v-for="post in posts" :key="post.id" />
+    <PostItem v-for="(post, index) in posts" :key="index" :post="post" />
   </div>
   <div class="alert alert-warning m-3" role="alert" v-if="!thereArePosts">There are not results.</div>
 </template>

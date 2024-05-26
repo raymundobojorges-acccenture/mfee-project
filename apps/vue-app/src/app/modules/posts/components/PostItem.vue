@@ -2,17 +2,17 @@
   <!-- Inicio PostItem.vue -->
   <div class="col-md-12 col-lg-6">
     <div class="card bg-dark text-white">
-      <img src="https://cdn.pixabay.com/photo/2017/02/22/17/06/wave-2089959_960_720.jpg" class="card-img" />
-      <div class="card-img-overlay mt-3 ms-3 card-img" @click="goToPostDetail('id')">
+      <img :src="post.image" class="card-img" />
+      <div class="card-img-overlay mt-3 ms-3 card-img" @click="goToPostDetail(post.id)">
         <div class="card-content">
-          <h1 class="display-5">Post 1</h1>
+          <h1 class="display-5">{{ post.title }}</h1>
           <p class="card-text fs-5">
-            <em>10 comments </em>
+            <em>{{ post.comments.length }} comments </em>
             <i class="fa-solid fa-comment"></i>
           </p>
-          <p class="card-text fs-5">Description</p>
+          <p class="card-text fs-5">{{ post.description }}</p>
           <p class="card-text fs-5 text-uppercase">
-            <strong>Category 1</strong>
+            <strong>{{ post.category.name }}</strong>
           </p>
         </div>
       </div>
@@ -30,9 +30,18 @@
 <script>
 export default {
   name: 'PostItem',
+  props: {
+    post: {
+      type: Object,
+      required: true
+    }
+  },
   methods: {
     goToPostDetail(id) {
-      console.log(id);
+      this.$router.push({
+        name: 'post-detail',
+        params: { id }
+      });
     },
     editPost() {
       console.log('🚀 ~ editPost ~ editPost:');
