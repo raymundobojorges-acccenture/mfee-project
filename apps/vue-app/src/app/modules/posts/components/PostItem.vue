@@ -7,7 +7,7 @@
     
             <img src="https://cdn.pixabay.com/photo/2017/02/22/17/06/wave-2089959_960_720.jpg" class="card-img" />
     
-            <div class="card-img-overlay mt-3 ms-3 card-img">
+            <div class="card-img-overlay mt-3 ms-3 card-img" v-on:click="goToPostDetail()">
     
                 <div class="card-content">
     
@@ -37,9 +37,9 @@
     
                 <div class="d-flex justify-content-end align-items-center ms-4">
     
-                    <i class="fa-solid fa-pen pe-3" data-bs-toggle="modal" data-bs-target="#createPostModal"></i>
+                    <i class="fa-solid fa-pen pe-3" data-bs-toggle="modal" data-bs-target="#createPostModal" v-on:click="editPost()"></i>
     
-                    <i class="fa-solid fa-trash"></i>
+                    <i class="fa-solid fa-trash" v-on:click="deletePost()"></i>
     
                 </div>
     
@@ -53,7 +53,18 @@
 </template>
 <script>
 export default {
-    name: 'PostItem'
+    name: 'PostItem',
+    methods: {
+        goToPostDetail(id) {
+
+        },
+        editPost() {
+
+        },
+        deletePost() {
+
+        }
+    }
 }
 </script>
 

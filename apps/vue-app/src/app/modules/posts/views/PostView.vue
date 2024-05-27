@@ -23,7 +23,7 @@
     
     
     
-    <div class="alert alert-warning m-3" role="alert">There are not results.</div>
+    <div class="alert alert-warning m-3" role="alert" v-if="isPostsEmpty">There are not results.</div>
 </template>
 
 <script>
@@ -103,27 +103,15 @@ export default {
       ]
     };
   },
+  /*   Activity 5: Add created hook */
   created() {
 
+  },
+  computed: {
+    isPostsEmpty() {
+      return this.posts.length === 0;
+    }
   }
   /*   Activity 5: Add created hook */
-
-  /*   Activity 9: Create computed properties: Create a computed property that validates if posts array has elements */
 };
 </script>
-
-<style>
-.sub-title {
-    color: #f0a441;
-    font-weight: 300;
-}
-
-.create-post {
-    height: 20px;
-    color: #f0a441;
-}
-
-.create-post:hover {
-    cursor: pointer;
-}
-</style>
