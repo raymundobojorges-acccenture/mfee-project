@@ -87,4 +87,4 @@ export default {
 .card-buttons {
     top: 85%;
 }
-</style>
+</style><!-- Activity 10: Adding click events */ -->

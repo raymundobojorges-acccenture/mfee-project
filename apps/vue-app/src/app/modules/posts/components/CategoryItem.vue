@@ -9,4 +9,4 @@
 export default {
     name: 'CategoryItem'
 };
-</script>
+</script><!-- Activity 10: Adding click events */ -->
