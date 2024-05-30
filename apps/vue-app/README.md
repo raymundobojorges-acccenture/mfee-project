@@ -51,5 +51,25 @@ https://vuelidate-next.netlify.app/
        
 ## Forms
 
+1. **PostForm.vue**:
+     - Has uso de **v-model** para bindear el formalario a un objecto local con las propiedades necesarias (id, title, description, categoryId, image, comments) 
+     - Deberás hacer uso de **getCategories()** para obtener las categorias y mostrarlos en el select.
+     - Valida el formulario al menos de que todos los campos sean requeridos.
+     - Si el formulario no es valido, muestra sus respectivos errores de cada campo
+     - Has uso de **createPost** que acabas de crear si el formulario es válido
+     - Al crear exitosamente un post nuevo puedes cerrar el modal con la siguiente linea: **this.$refs.btnCloseModal.click();**, ve más sobre la **Template Refs** aquí https://vuejs.org/guide/essentials/template-refs.html
+     - Llama de nuevo **getPosts()** del store, para actualizar los posts
+
+2. **NewComment.vue**:
+     - Has uso de **v-model**
+     - Valida el input con que sea requerido
+     - Sino es válido muestra los errores, si es válido has un emit del nuevo commentario
+     - Vuelve a setear el comment en null y has un reset del input
+  
+3. **CommentsLists.vue**:
+     - Escuha el emit de **<NewComment>** y has un emit de ese mismo comentario
+  
+4. **PostDetailView.vue**:
+     - Escucha el emit de **<CommentsList>** y has uso de la función para actualizar un post (**updatePost(post)**) para agreagar el comentario nuevo
 
 
