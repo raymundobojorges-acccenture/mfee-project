@@ -59,6 +59,7 @@ https://vuelidate-next.netlify.app/
      - Has uso de **createPost** que acabas de crear si el formulario es válido
      - Al crear exitosamente un post nuevo puedes cerrar el modal con la siguiente linea: **this.$refs.btnCloseModal.click();**, ve más sobre la **Template Refs** aquí https://vuejs.org/guide/essentials/template-refs.html
      - Llama de nuevo **getPosts()** del store, para actualizar los posts
+     - Crea un nuevo método que se encargue de hacer un reset de tu objecto local y las validaciones de tu form, manda a llamar ese método con el evento click la x del modal y en el botón close
 
 2. **NewComment.vue**:
      - Has uso de **v-model**
@@ -67,9 +68,13 @@ https://vuelidate-next.netlify.app/
      - Vuelve a setear el comment en null y has un reset del input
   
 3. **CommentsLists.vue**:
-     - Escuha el emit de **<NewComment>** y has un emit de ese mismo comentario
+     - Escuha el emit de **NewComment.vue** y has un emit de ese mismo comentario
+     - Crea una nueva prop llamada **comments** que sea Array y requerida, elimina tu varible de data **comments**
   
 4. **PostDetailView.vue**:
-     - Escucha el emit de **<CommentsList>** y has uso de la función para actualizar un post (**updatePost(post)**) para agreagar el comentario nuevo
+     - Crea un método que haga uso de **getPostById(id)** y mandalo a llamar en el **mounted()**, guarda el resultado en una varible local llamada **post**
+     - Has uso de **data bindind** y **text interpolation** para mostrar los datos de post en la vista (image, title, description), enviale los **comments** del post a **NewComment.vue** 
+     - Escucha el emit de **CommentsList.vue** y has uso de la función para actualizar un post (**updatePost(post)**) para agreagar el comentario nuevo
+     - Valida que puedas añadir un comentario nuevo, ver la información del post que selecciones, etc.
 
 
