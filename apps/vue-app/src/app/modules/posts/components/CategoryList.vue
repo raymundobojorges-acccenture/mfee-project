@@ -8,6 +8,7 @@
 <script>
 import CategoryItem from './CategoryItem.vue';
 import { store } from '../store/store';
+import { getCategories } from '../helpers/categories';
 
 export default {
   components: {
@@ -16,24 +17,7 @@ export default {
   data() {
     return {
       /*   Activity 8: Add v-for directive: Use this array to iterate <CategoryItem> in the template */
-      categories: [
-        {
-          id: 2,
-          name: 'Travel'
-        },
-        {
-          id: 3,
-          name: 'Lifecycle'
-        },
-        {
-          id: 4,
-          name: 'Business'
-        },
-        {
-          id: 5,
-          name: 'Work'
-        }
-      ],
+      categories: [],
       store
     };
   },
@@ -59,10 +43,16 @@ export default {
         ...category,
         active: category.name === 'All'
       }));
+    },
+    async getCategories() {
+      this.categories = await getCategories();
+
+      this.buildCategories();
     }
   },
+
   created() {
-    this.buildCategories();
+    this.getCategories();
   }
 };
 </script>
