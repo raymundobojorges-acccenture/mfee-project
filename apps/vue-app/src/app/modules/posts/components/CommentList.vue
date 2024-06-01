@@ -4,7 +4,7 @@
         <p class="text-center fs-5"><strong> Comments </strong></p>
     
         <!-- Activity 7: Render components: Render CommentItem from /components folder */ -->
-    
+        <!-- Activity 12: Adding events and props -->
         <CommentItem v-for="comment in comments" />
     
         <div class="alert alert-warning m-3" role="alert" v-if="areCommentsEmpty()">There are not results.</div>
@@ -14,6 +14,7 @@
         <NewComment/>
     
     </div>
+
 </template>
 
 <script>

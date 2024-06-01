@@ -12,6 +12,6 @@
 <script>
 export default {
   name: 'CommentItem'
+  /* Activity 12: Adding events and props */
 }
-
 </script>

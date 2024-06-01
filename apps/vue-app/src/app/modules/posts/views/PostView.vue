@@ -26,6 +26,7 @@
     <div class="alert alert-warning m-3" role="alert" v-if="isPostsEmpty">There are not results.</div>
 </template>
 
+<!--Activity 12: Adding events and props */ -->
 <script>
 import HeaderPost from '../components/HeaderPost.vue';
 import PostItem from '../components/PostItem.vue';

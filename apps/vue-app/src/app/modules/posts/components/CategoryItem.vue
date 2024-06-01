@@ -5,8 +5,11 @@
     
     <!-- Fin CategoryItem.vue -->
 </template>
+<!-- Activity 10: Adding click events */ -->
+<!-- Activity 10: Adding click events */ -->
 <script>
 export default {
+    /* Activity 12: Adding events and props */
     name: 'CategoryItem',
     methods: {
         selectCategory(id) {
@@ -14,4 +17,4 @@ export default {
         }
     }
 };
-</script><!-- Activity 10: Adding click events */ -->
+</script>

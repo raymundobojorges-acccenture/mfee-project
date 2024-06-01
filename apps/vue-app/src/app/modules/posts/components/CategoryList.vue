@@ -1,19 +1,18 @@
 <template>
-    <!-- Inicio CategoriesList.vue -->
-    
-    <div class="btn-group" role="group">
-    
-        <CategoryItem v-for="(name, id) in categories"/>
-    
-    </div>
+  <!-- Inicio CategoriesList.vue -->
+
+  <div class="btn-group" role="group">
+    <CategoryItem v-for="(name, id) in categories" />
+  </div>
 </template>
 <script>
 import CategoryItem from './CategoryItem.vue';
 export default {
-    name: 'CategoryList',
-    components: {
-        CategoryItem
-    },
+  name: 'CategoryList',
+  components: {
+    CategoryItem
+  },
+  created() {},
   data() {
     return {
       /*   Activity 8: Add v-for directive: Use this array to iterate <CategoryItem> in the template */
@@ -37,9 +36,22 @@ export default {
       ]
     };
   },
-  /*   Activity 5: Add created hook */
-  created() {
+  /* Activity 12: Adding events and props */
+  methods: {
+    buildCategories() {
+      this.categories = [
+        {
+          id: '1',
+          name: 'All'
+        },
+        ...this.categories
+      ];
 
+      this.categories = this.categories.map((category) => ({
+        ...category,
+        active: category.name === 'All'
+      }));
+    }
   }
 };
 </script>
