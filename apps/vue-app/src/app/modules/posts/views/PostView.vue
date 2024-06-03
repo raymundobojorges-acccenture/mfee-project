@@ -1,45 +1,25 @@
 <template>
-    <!-- Activity 3: Render Header components -->
-    
-    
-    
-    <HeaderPost/>
-    
-    
-    
-    <div class="row pt-5">
-    
-    
-    
-        <!-- Activity 4: Render PostItem component -->
-    
-    
-    
-        <PostItem v-for="post in posts" :post="post"/>
-    
-    
-    
-    </div>
-    
-    
-    
-    <div class="alert alert-warning m-3" role="alert" v-if="isPostsEmpty">There are not results.</div>
+  <HeaderPost />
+
+  <div class="row pt-5">
+    <PostItem v-for="post in posts" :post="post" />
+  </div>
+
+  <div class="alert alert-warning m-3" role="alert" v-if="isPostsEmpty">There are not results.</div>
 </template>
 
-<!--Activity 12: Adding events and props */ -->
 <script>
 import HeaderPost from '../components/HeaderPost.vue';
 import PostItem from '../components/PostItem.vue';
 
 export default {
-    name: 'PostView',
-    components: {
-        HeaderPost,
-        PostItem
-    },
-    data() {
+  name: 'PostView',
+  components: {
+    HeaderPost,
+    PostItem
+  },
+  data() {
     return {
-      /*   Activity 8: Add v-for directive: Use this array to iterate <PostItem> in the template */
       posts: [
         {
           id: 1,
@@ -104,15 +84,12 @@ export default {
       ]
     };
   },
-  /*   Activity 5: Add created hook */
-  created() {
-
-  },
+  created() {},
   computed: {
     isPostsEmpty() {
       return this.posts.length === 0;
     }
   }
-  /*   Activity 5: Add created hook */
+  /* Activity 15: Using axios */
 };
 </script>

@@ -1,4 +1,3 @@
-/* Activity 13: Reactivity API */
 import { reactive } from 'vue';
 
 export const categoryStore = reactive({
@@ -9,3 +8,4 @@ export const categoryStore = reactive({
     this.currentCategoryId = id;
   }
 });
+/* Activity 15: Using axios */

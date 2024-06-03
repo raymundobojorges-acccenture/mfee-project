@@ -62,5 +62,6 @@ export default {
       categoryStore.setCurrentCategory(id);
     }
   }
+  /* Activity 15: Using axios */
 };
 </script>

@@ -43,6 +43,7 @@ export default {
       this.$router.go(-1);
     }
   }
+  /*   Activity 16: Forms */
 };
 </script>
 

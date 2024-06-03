@@ -35,5 +35,6 @@ export default {
         }
     }
   /*   Activity 9: Create computed properties: Create a computed property that validates if comments array has elements */
+  /*   Activity 16: Forms */
 };
 </script>

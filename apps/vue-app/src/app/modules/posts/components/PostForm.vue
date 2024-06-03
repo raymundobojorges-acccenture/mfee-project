@@ -46,13 +46,12 @@
 let modalTitle = "Action";
 export default {
   name: 'PostForm',
-  /*   Activity 5: Add created hook */
   created() {
 
   },
-  /*   Activity 6: Add unmounted hook */
   unmounted() {
 
   }
+  /*   Activity 16: Forms */
 };
 </script>
