@@ -15,7 +15,7 @@
     
     
     
-        <PostItem v-for="post in posts"/>
+        <PostItem v-for="post in posts" :post="post"/>
     
     
     

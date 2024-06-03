@@ -4,8 +4,7 @@
       <div class="card bg-dark text-white">
         <img src="https://cdn.pixabay.com/photo/2017/02/22/17/06/wave-2089959_960_720.jpg" class="card-img" />
         <div class="card-img-overlay">
-          <!-- Activity 14: Vue router  -->
-          <div class="d-flex justify-content-start align-items-center ms-4">
+          <div class="d-flex justify-content-start align-items-center ms-4" v-on:click="goBack()">
             <i class="fa-solid fa-chevron-left me-2"></i>
             <span>View Posts</span>
           </div>
@@ -14,6 +13,7 @@
           <div class="card-content">
             <h1 class="display-2">
               <strong>Post title</strong>
+              
             </h1>
           </div>
         </div>
@@ -23,7 +23,6 @@
     <div class="col-md-12 bg-gray">
       <div class="container m-5">
         <p class="fs-5">Post Description</p>
-        <!-- Activity 7: Render components: Render CommentList from /components folder */ -->
         <CommentList />
       </div>
     </div>
@@ -36,8 +35,14 @@ export default {
   components: {
     CommentList
   },
-  /*   Activity 5: Add created hook */
-  created() {}
+  created() {
+    this.postId = this.$route.params.id;
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
+  }
 };
 </script>
 

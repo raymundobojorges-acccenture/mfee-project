@@ -1,12 +1,10 @@
-<!-- Activity 2: Render PostView.vue component -->
 <template>    
-    <PostView/>
-    <!-- Activity 14: Vue router  -->
+   
+    <RouterView/>
 </template>
-
 <script>
 import PostView from '../views/PostView.vue';
-
+import { RouterView } from 'vue-router';
 export default {
     name: 'PostLayout',
     components: {

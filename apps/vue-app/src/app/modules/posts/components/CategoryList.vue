@@ -1,21 +1,23 @@
 <template>
-  <!-- Inicio CategoriesList.vue -->
-
   <div class="btn-group" role="group">
-    <CategoryItem v-for="(name, id) in categories" />
+    <div v-for="category in categories">
+      <CategoryItem :category="category" @selectCategory="(id) => selectCategoryHandler(id)" />
+    </div>
   </div>
 </template>
 <script>
 import CategoryItem from './CategoryItem.vue';
+import { categoryStore } from '../store/store.js';
 export default {
   name: 'CategoryList',
   components: {
     CategoryItem
   },
-  created() {},
+  created() {
+    this.buildCategories();
+  },
   data() {
     return {
-      /*   Activity 8: Add v-for directive: Use this array to iterate <CategoryItem> in the template */
       categories: [
         {
           id: 2,
@@ -36,7 +38,6 @@ export default {
       ]
     };
   },
-  /* Activity 12: Adding events and props */
   methods: {
     buildCategories() {
       this.categories = [
@@ -51,6 +52,14 @@ export default {
         ...category,
         active: category.name === 'All'
       }));
+    },
+    selectCategoryHandler({ id }) {
+      this.categories = this.categories.map((category) => {
+        if (category.id === id) return { ...category, active: true };
+
+        return { ...category, active: false };
+      });
+      categoryStore.setCurrentCategory(id);
     }
   }
 };

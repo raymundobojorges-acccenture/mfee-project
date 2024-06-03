@@ -1,20 +1,28 @@
 <template>
-    <!-- Inicio CategoryItem.vue -->
-    
-    <button type="button" class="btn btn-light" v-on:click="selectCategory()" :class="{ active: false }">Category 1</button>
-    
-    <!-- Fin CategoryItem.vue -->
+  <button type="button" class="btn btn-light" v-on:click="selectCategory(category.id)" :class="{ active: category.active }">{{category.name}}</button>
 </template>
-<!-- Activity 10: Adding click events */ -->
-<!-- Activity 10: Adding click events */ -->
 <script>
 export default {
-    /* Activity 12: Adding events and props */
-    name: 'CategoryItem',
-    methods: {
-        selectCategory(id) {
-            
-        }
+  name: 'CategoryItem',
+  methods: {
+    selectCategory(id) {
+      return this.$emit('selectCategory', { id });
     }
+  },
+  emits: {
+    selectCategory: ({ id }) => {
+      return id;
+    }
+  },
+  props: {
+    category: {
+      type: {
+        active: false,
+        id: 0,
+        name: null
+      },
+      required: true
+    }
+  }
 };
 </script>
