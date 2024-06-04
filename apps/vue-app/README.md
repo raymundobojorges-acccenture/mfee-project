@@ -45,7 +45,11 @@ https://vuelidate-next.netlify.app/
 ## Mixin
 
 1. Has uso de este mixin para usar un sweet alert al crear/actualizar post, eliminar post y agregar un comentario. Esto es para mostrar un mensaje de success o error al ejecutar x acción.
-     
+
+
+## Fin del proyecto
+
+Valida que el proyecto funcione correctamente, si existe algún issue o algo extraño, haz el fix
 
 
 
