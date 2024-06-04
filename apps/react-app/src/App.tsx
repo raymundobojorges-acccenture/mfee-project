@@ -7,7 +7,7 @@ import { Grid } from "@mui/material";
 function App() {
   const page: string = "HomePage";
   const showPostPage: boolean = true;
-  const showCategoriesPage: boolean = false;
+  const showCategoriesPage: boolean = true;
   const showLoginPage: boolean = false;
 
   return (

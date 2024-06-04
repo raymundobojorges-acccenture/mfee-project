@@ -12,7 +12,8 @@ function Banner({postImage, postTitle}:{postImage : string, postTitle: string })
         <Button sx={{ color: "white" }} startIcon={<ArrowBackIosIcon />}>
           View Posts
         </Button>
-        <BannerTitle variant="h3">{/* ACT 1 - Render postTitle */}</BannerTitle>
+        <BannerTitle variant="h3">{postTitle}</BannerTitle>
+        
       </BannerContent>
     </Container>
   );

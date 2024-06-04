@@ -5,7 +5,7 @@ import CategoryButtonGroup from "../../CategoryButtonGroup/CategoryButtonGroup";
 import CreatePostButton from "../../CreatePostButton/CreatePostButton";
 import { Category } from "../../../types";
 import { PostContext } from "../../../context";
-import Loading from "../../Loading";
+import Loading from "../../Loading/Loading";
 
 const categories: Category[] = [
   { id: "663fef70d513515319551d1f", name: "Travel" },
