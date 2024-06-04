@@ -28,6 +28,10 @@
 </template>
 
 <script>
+import { alerts } from '../helpers/alerts';
+import { store } from '../store/store';
+import { deletePost } from '../helpers/posts';
+
 export default {
   name: 'PostItem',
   props: {
@@ -35,6 +39,12 @@ export default {
       type: Object,
       required: true
     }
+  },
+  mixins: [alerts],
+  data() {
+    return {
+      store
+    };
   },
   methods: {
     goToPostDetail(id) {
@@ -44,10 +54,28 @@ export default {
       });
     },
     editPost() {
-      console.log('🚀 ~ editPost ~ editPost:');
+      this.store.setPostEditing(this.post);
     },
     deletePost() {
-      console.log('🚀 ~ deletePost ~ deletePost:');
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const status = await deletePost(this.post.id);
+          if (status) {
+            this.showAlert('success', 'The post has been deleted');
+            this.store.getPosts();
+          } else {
+            this.showAlert('error', "The post couldn't be deleted");
+          }
+        }
+      });
     }
   }
 };

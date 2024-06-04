@@ -61,11 +61,13 @@ import { useVuelidate } from '@vuelidate/core';
 import { helpers, required } from '@vuelidate/validators';
 import { getCategories } from '../helpers/categories';
 import { store } from '../store/store';
-import { createPost } from '../helpers/posts';
+import { createPost, updatePost } from '../helpers/posts';
+import { alerts } from '../helpers/alerts';
 
 export default {
   /*   Activity 5: Add created hook */
   /*   Activity 6: Add unmounted hook */
+  mixins: [alerts],
   data() {
     return {
       v$: useVuelidate(),
@@ -118,7 +120,7 @@ export default {
           description,
           image,
           category: categorySelected,
-          comments
+          comments: comments ? comments : []
         };
         console.log('🚀 ~ submit ~ post:', post);
 
@@ -128,13 +130,20 @@ export default {
     async savePost(post) {
       let status;
 
-      status = await createPost(post);
+      if (this.action === 'Edit') {
+        status = await updatePost({ ...post, id: this.post.id });
+      } else {
+        status = await createPost(post);
+      }
 
       if (status) {
+        this.showAlert('success', 'The post has been saved');
         this.store.getPosts();
       } else {
-        console.log('Ha sucedido un error');
+        this.showAlert('error', "The post couldn't be saved");
       }
+
+      this.action = 'Create';
       this.$refs.btnCloseModal.click();
     },
     async getCategories() {
@@ -151,8 +160,32 @@ export default {
       this.v$.$reset();
     }
   },
+  watch: {
+    'store.postEditing'(newValue) {
+      if (newValue) {
+        console.log('🚀 ~ newValue:', newValue);
+        this.action = 'Edit';
+
+        const { id, title, description, image, category, comments } = newValue;
+
+        this.post = {
+          id,
+          title,
+          description,
+          image,
+          categoryId: category.id,
+          comments
+        };
+      } else {
+        this.action = 'Create';
+      }
+    }
+  },
   created() {
     this.getCategories();
+  },
+  unmounted() {
+    this.store.setPostEditing(null);
   }
 };
 </script>

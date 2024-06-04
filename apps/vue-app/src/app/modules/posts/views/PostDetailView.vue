@@ -32,6 +32,7 @@
 <script>
 import CommentList from '../components/CommentList.vue';
 import { updatePost, getPostById } from '../helpers/posts';
+import { alerts } from '../helpers/alerts';
 
 export default {
   props: {
@@ -41,6 +42,7 @@ export default {
   components: {
     CommentList
   },
+  mixins: [alerts],
   data() {
     return {
       post: {}
@@ -57,9 +59,10 @@ export default {
       };
       const status = await updatePost(post);
       if (status) {
+        this.showAlert('success', 'The comment has been added');
         this.getPostById(this.post.id);
       } else {
-        console.log('Ha sucedido un error');
+        this.showAlert('error', "The comment couldn't be added");
       }
     }
   },
