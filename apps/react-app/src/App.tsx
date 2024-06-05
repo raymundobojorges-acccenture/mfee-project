@@ -1,7 +1,7 @@
 
 import { CategoriesPage, HomePage, LoginPage, PostPage } from "./components/Page";
 import NavBar from "./components/NavBar";
-import { PostProvider } from "./context";
+import { PostProvider, SnackbarProvider } from "./context";
 import { Grid } from "@mui/material";
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
 
   return (
     // ACT 7 - Rneder SnackbarProvider component
+    <SnackbarProvider>
     <PostProvider>
         <Grid
           container
@@ -41,6 +42,7 @@ function App() {
           </Grid>
         </Grid>
     </PostProvider>
+    </SnackbarProvider>
   );
 }
 
