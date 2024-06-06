@@ -63,6 +63,7 @@ export default {
       this.post = await updatePost(this.post);
     }
   }
+  /* Activity 17: Watcher */
 };
 </script>
 

@@ -13,3 +13,4 @@ export const globalStore = reactive({
   }
 });
 /* Activity 15: Using axios */
+/* Activity 17: Watcher */
