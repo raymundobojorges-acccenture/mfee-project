@@ -45,9 +45,10 @@ function CategoriesPage() {
     <PageContainer container>
       Categories Page
       <Grid item sx={{ justifyContent: "flex-end", display: "flex" }}>
-      <IconButton aria-label="add">
-        <AddIcon />
-      </IconButton>
+        {/* ACT 8 - Use the IconButton component (from MUI) to open the Modal */}
+        <IconButton aria-label="add">
+          <AddIcon />
+        </IconButton>
       </Grid>
       <Grid item sx={{ flexGrow: 1 }}>
         {/* ACT 6 - Create a component called "Table" to display category names */}
@@ -69,11 +70,11 @@ function CategoriesPage() {
                     {row.name}
                   </TableCell>
                   <TableCell align="right">
-                    <IconButton aria-label="edit">
-                      <EditIcon onClick={handleEditItem} />
+                    <IconButton aria-label="edit" onClick={handleEditItem}>
+                      <EditIcon  />
                     </IconButton>
-                    <IconButton aria-label="delete">
-                      <DeleteIcon onClick={handleDeleteItem} />
+                    <IconButton aria-label="delete" onClick={handleDeleteItem}>
+                      <DeleteIcon  />
                     </IconButton>                    
                   </TableCell>
                 </TableRow>
@@ -82,7 +83,7 @@ function CategoriesPage() {
           </Table>
         </TableContainer>
       </Grid>
-      //Modal
+      {/* ACT 8 - Create a Modal to add new categories and update existing ones */}
     </PageContainer>
   );
 }

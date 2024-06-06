@@ -25,7 +25,7 @@ function Comments({comments}: CommentType) {
       {/* ACT 5 - Iterate comments to render CommentCard component for each comment */}
       { comments.map(comment => <CommentCard comment={comment}    key={comment._id} ></CommentCard> ) }
       <FormContainer item sm={8}>
-        Form
+        {/* ACT 8 - Create a form to add comments */}
       </FormContainer>
     </Container>
   );
