@@ -12,8 +12,7 @@
         <div class="card-img-overlay text-center title">
           <div class="card-content">
             <h1 class="display-2">
-              <strong>Post title</strong>
-              
+              <strong>{{ this.post.title }}</strong>
             </h1>
           </div>
         </div>
@@ -22,8 +21,8 @@
 
     <div class="col-md-12 bg-gray">
       <div class="container m-5">
-        <p class="fs-5">Post Description</p>
-        <CommentList />
+        <p class="fs-5">{{ this.post.description ?? '' }}</p>
+        <CommentList :comments="this.post.comments" @addComment="(comment) => addCommentHandler(comment)" />
       </div>
     </div>
   </div>
@@ -31,19 +30,39 @@
 
 <script>
 import CommentList from '../components/CommentList.vue';
+import { getPostById, updatePost } from '../helpers/posts';
 export default {
   components: {
     CommentList
   },
+  data() {
+    return {
+      post: {
+        imageUrl: null,
+        title: null,
+        description: null
+      }
+    };
+  },
   created() {
     this.postId = this.$route.params.id;
+  },
+  async mounted() {
+    await this.getPost();
   },
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    async getPost() {
+      let postId = this.$route.params.id;
+      this.post = await getPostById(postId);
+    },
+    async addCommentHandler(data) {
+      this.post.comments.push(data.comment);
+      this.post = await updatePost(this.post);
     }
   }
-  /*   Activity 16: Forms */
 };
 </script>
 

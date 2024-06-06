@@ -7,38 +7,28 @@
 </template>
 <script>
 import CategoryItem from './CategoryItem.vue';
-import { categoryStore } from '../store/store.js';
+import { globalStore } from '../store/store.js';
+import { getCategories } from '../helpers/categories.js';
+
 export default {
   name: 'CategoryList',
   components: {
     CategoryItem
   },
   created() {
-    this.buildCategories();
+    this.getCategories();
   },
   data() {
     return {
-      categories: [
-        {
-          id: 2,
-          name: 'Travel'
-        },
-        {
-          id: 3,
-          name: 'Lifecycle'
-        },
-        {
-          id: 4,
-          name: 'Business'
-        },
-        {
-          id: 5,
-          name: 'Work'
-        }
-      ]
+      categories: [],
+      globalStore
     };
   },
   methods: {
+    async getCategories() {
+      this.categories = await getCategories();
+      this.buildCategories();
+    },
     buildCategories() {
       this.categories = [
         {
@@ -59,9 +49,8 @@ export default {
 
         return { ...category, active: false };
       });
-      categoryStore.setCurrentCategory(id);
+      this.globalStore.setCurrentCategory(id);
     }
   }
-  /* Activity 15: Using axios */
 };
 </script>
