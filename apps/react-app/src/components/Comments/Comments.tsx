@@ -1,4 +1,5 @@
 import CommentCard from "../CommentCard";
+import CommentForm from "../CommentForm/CommentForm";
 import { Title, Container, FormContainer } from "./Comments.styles";
 
 // ACT 3 - Receive comments prop
@@ -26,6 +27,7 @@ function Comments({comments}: CommentType) {
       { comments.map(comment => <CommentCard comment={comment}    key={comment._id} ></CommentCard> ) }
       <FormContainer item sm={8}>
         {/* ACT 8 - Create a form to add comments */}
+        <CommentForm></CommentForm>
       </FormContainer>
     </Container>
   );

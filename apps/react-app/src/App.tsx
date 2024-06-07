@@ -8,7 +8,7 @@ function App() {
   const page: string = "HomePage";
   const showPostPage: boolean = true;
   const showCategoriesPage: boolean = true;
-  const showLoginPage: boolean = false;
+  const showLoginPage: boolean = true;
 
   return (
     // ACT 7 - Rneder SnackbarProvider component
