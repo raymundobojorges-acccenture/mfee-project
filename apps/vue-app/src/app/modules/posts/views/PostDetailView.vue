@@ -31,16 +31,21 @@
 <script>
 import CommentList from '../components/CommentList.vue';
 import { getPostById, updatePost } from '../helpers/posts';
+import { alerts } from '../helpers/alerts';
+
 export default {
   components: {
     CommentList
   },
+  mixins: [alerts],
   data() {
     return {
       post: {
-        imageUrl: null,
+        image: null,
         title: null,
-        description: null
+        description: null,
+        comments: [],
+        category: {}
       }
     };
   },
@@ -59,8 +64,14 @@ export default {
       this.post = await getPostById(postId);
     },
     async addCommentHandler(data) {
-      this.post.comments.push(data.comment);
-      this.post = await updatePost(this.post);
+      try {
+        this.post.comments.push(data.comment);
+        this.post = await updatePost(this.post);
+        this.showAlert('success', 'Comentario agregado con éxito');
+      } catch (error) {
+        console.log(error);
+        this.showAlert('error', 'Error al crear el comentario');
+      }
     }
   }
   /* Activity 17: Watcher */

@@ -10,7 +10,7 @@
           <h1 class="display-5">{{ post.title }}</h1>
 
           <p class="card-text fs-5">
-            <em>{{ post.comments.length }} comments </em>
+            <em>{{ post.comments?.length }} comments </em>
 
             <i class="fa-solid fa-comment"></i>
           </p>
@@ -36,14 +36,43 @@
   <!-- Fin PostItem.vue -->
 </template>
 <script>
+import Swal from 'sweetalert2/dist/sweetalert2';
+import { globalStore } from '../store/store';
+import { deletePost } from '../helpers/posts';
+import { alerts } from '../helpers/alerts';
+
 export default {
   name: 'PostItem',
+  mixins: [alerts],
+  data() {
+    return {
+      globalStore
+    };
+  },
   methods: {
     goToPostDetail(id) {
       this.$router.push({ path: `/post-detail/${id}` });
     },
-    editPost() {},
-    deletePost() {}
+    editPost() {
+      globalStore.setPostEditing(this.post);
+    },
+    async deletePost() {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You can't revert your action",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Delete it!',
+        cancelButtonText: 'No, Keep it!',
+        showCloseButton: true,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await deletePost(this.post.id);
+          this.showAlert('success', 'Post eliminado con éxito');
+          this.$emit('refreshView');
+        }
+      });
+    }
   },
   props: {
     post: {
@@ -85,8 +114,3 @@ export default {
   top: 85%;
 }
 </style>
-<!-- Activity 10: Adding click events */ -->
-<!-- Activity 10: Adding click events */ -->
-<!--Activity 12: Adding events and props */ -->
-<!-- Activity 14: Vue router  -->
-<!-- Activity 17: Watcher  -->

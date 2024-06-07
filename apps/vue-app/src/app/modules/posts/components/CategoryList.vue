@@ -49,7 +49,7 @@ export default {
 
         return { ...category, active: false };
       });
-      this.globalStore.setCurrentCategory(id);
+      globalStore.setCurrentCategory(id);
     }
   }
 };

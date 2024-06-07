@@ -1,8 +1,7 @@
 <template>
   <HeaderPost />
-  {{ categorySelected }}
   <div class="row pt-5">
-    <PostItem v-for="post in postsFiltered" :post="post" />
+    <PostItem @refreshView="refreshViewListener()" v-for="post in postsFiltered" :post="post" />
   </div>
 
   <div class="alert alert-warning m-3" role="alert" v-if="thereAreposts">There are not results.</div>
@@ -26,12 +25,23 @@ export default {
     };
   },
   async created() {
-    await this.globalStore.loadPosts();
     this.loadPosts();
   },
   methods: {
     async loadPosts() {
+      await globalStore.loadPosts();
       this.posts = this.globalStore.posts;
+    },
+    refreshViewListener() {
+      this.loadPosts();
+    }
+  },
+  watch: {
+    'globalStore.refreshView'(newValue, oldValue) {
+      if (newValue) {
+        this.loadPosts();
+        this.globalStore.setRefreshView(false);
+      }
     }
   },
   computed: {

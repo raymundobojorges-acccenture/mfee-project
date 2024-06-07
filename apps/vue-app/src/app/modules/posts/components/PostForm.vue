@@ -27,8 +27,8 @@
             </div>
             <div class="form-group">
               <label>URL of the image</label>
-              <input v-model="formData.imageUrl" name="url" id="url" type="text" class="form-control" />
-              <span v-if="v$.formData.imageUrl.$invalid" class="form-text text-danger"> Error </span>
+              <input v-model="formData.image" name="url" id="url" type="text" class="form-control" />
+              <span v-if="v$.formData.image.$invalid" class="form-text text-danger"> Error </span>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ref="btnCloseModal">Cancel</button>
@@ -44,13 +44,15 @@
 <script>
 import useVuelidate from '@vuelidate/core';
 import { getCategories } from '../helpers/categories.js';
-import { createPost } from '../helpers/posts.js';
+import { createPost, updatePost } from '../helpers/posts.js';
 import { required } from '@vuelidate/validators';
 import { ref } from 'vue';
+import { globalStore } from '../store/store';
+import { alerts } from '../helpers/alerts';
 
-let modalTitle = 'Action';
 export default {
   name: 'PostForm',
+  mixins: [alerts],
   setup() {
     const btnCloseModal = ref(null);
 
@@ -64,37 +66,85 @@ export default {
       formData: {
         title: '',
         description: '',
-        imageUrl: '',
+        image: '',
         category: ''
       },
-      categories: []
+      categories: [],
+      globalStore,
+      modalTitle: 'Create'
     };
   },
   async created() {
     await this.getCategories();
   },
-  unmounted() {},
+  unmounted() {
+    globalStore.setPostEditing(null);
+  },
   validations() {
     return {
       formData: {
         title: { required },
         description: { required },
-        imageUrl: { required },
+        image: { required },
         category: { required }
       }
     };
   },
+  watch: {
+    'globalStore.postEditing'(newValue, oldValue) {
+      if (newValue !== null) {
+        this.modalTitle = 'Edit';
+        this.formData.title = newValue.title;
+        this.formData.description = newValue.description;
+        this.formData.category = newValue.category.id;
+        this.formData.image = newValue.image;
+      } else {
+        this.modalTitle = 'Create';
+      }
+    }
+  },
   methods: {
+    resetForm() {
+      for (let key in this.formData) {
+        if (this.formData.hasOwnProperty(key)) {
+          this.formData[key] = '';
+        }
+      }
+    },
     async getCategories() {
       this.categories = await getCategories();
     },
     async submitForm() {
-      
       this.v$.$touch();
       if (this.v$.$invalid) {
         console.log('El formulario tiene errores');
       } else {
-        await createPost(this.formData);
+        try {
+          if (this.globalStore.postEditing) {
+            let newPost = {
+              ...this.formData,
+              id: this.globalStore.postEditing.id,
+              comments: this.globalStore.postEditing.comments,
+              category: this.globalStore.postEditing.category
+            };
+            await updatePost(newPost);
+            globalStore.setPostEditing(null);
+            this.showAlert('success', 'Post actualizado con éxito');
+          } else {
+            let newPost = {
+              ...this.formData,
+              category: this.categories.find((category) => category.id === this.formData.category),
+              comments: []
+            };
+            await createPost(newPost);
+            this.showAlert('success', 'Post creado con exito');
+          }
+        } catch (error) {
+          console.log(error);
+          this.showAlert('error', 'Error al crear el post');
+        }
+        globalStore.setRefreshView(true);
+        this.resetForm();
         this.$refs.btnCloseModal.click();
       }
     }

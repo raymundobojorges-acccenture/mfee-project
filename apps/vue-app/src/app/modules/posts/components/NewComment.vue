@@ -31,6 +31,7 @@ export default {
       }
     };
   },
+  emits: ['addComment'],
   validations() {
     return {
       formData: {

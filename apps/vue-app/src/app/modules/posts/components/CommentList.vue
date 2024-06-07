@@ -25,7 +25,6 @@ export default {
       required: true
     }
   },
-  data() {},
   computed: {
     areCommentsEmpty() {
       return !this.comments || this.comments.length === 0;
@@ -36,6 +35,5 @@ export default {
       this.$emit('addComment', { comment: data.comment });
     }
   }
-  /*   Activity 16: Forms */
 };
 </script>

@@ -14,25 +14,17 @@
       "id": "1"
     },
     {
-      "title": "At the beach in winter Updated1",
+      "title": "At the beach in winter Updated",
       "description": "No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas Letraset, las cuales contenian pasajes de",
       "image": "https://cdn.pixabay.com/photo/2015/11/18/11/47/waikiki-beach-1049014_960_720.jpg",
       "category": {
         "id": "4",
         "name": "Business"
       },
+      "id": "2",
       "comments": [
-        "new comment",
-        "efefefef",
-        "Hola",
-        "dfff",
-        "Hola",
-        "edfe",
-        "adios",
-        "wwww",
-        "dvd"
-      ],
-      "id": "2"
+        "new comment"
+      ]
     },
     {
       "id": "4",
@@ -93,16 +85,17 @@
       ]
     },
     {
-      "id": "0c23",
-      "title": "new post test",
-      "description": "Phasellus dictum luctus lectus, at egestas nibh suscipit sit amet. Donec lectus nulla, volutpat ac varius quis, hendrerit at massa. Etiam tincidunt ex vitae urna molestie, molestie ultrices quam maximus. Cras hendrerit quam est, vel ultricies nibh dignissim id. ",
-      "image": "https://cdn.pixabay.com/photo/2024/01/25/12/54/building-8531835_960_720.jpg",
+      "id": "832b",
+      "title": "efefef",
+      "description": "fefef",
+      "image": "https://cdn.pixabay.com/photo/2015/11/18/11/47/waikiki-beach-1049014_960_720.jpg",
       "category": {
         "id": "3",
         "name": "Lifecycle"
       },
       "comments": [
-        "new commet"
+        "efefef",
+        "efefefef"
       ]
     }
   ]
