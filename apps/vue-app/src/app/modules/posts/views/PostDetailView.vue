@@ -35,9 +35,7 @@ export default {
   components:{
     CommentList
   },
-  created(){
-
-}
+  created(){}
 };
 </script>
 

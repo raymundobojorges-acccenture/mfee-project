@@ -3,7 +3,7 @@
 <div class="row pt-5">
   <PostItem v-for="post in posts" :key="post.id"/>
 </div>
-<div class="alert alert-warning m-3" role="alert">There are not results.</div>
+<div v-if="isPostsEmpty" class="alert alert-warning m-3" role="alert">There are not results.</div>
 </template>
 
 <script>
@@ -78,9 +78,12 @@ export default {
       ]
     };
   },
+  computed:{
+    isPostsEmpty(){
+      return this.posts.length === 0;
+    }
+  },
   created(){}
-
-  /*   Activity 9: Create computed properties: Create a computed property that validates if posts array has elements */
 };
 </script>
 

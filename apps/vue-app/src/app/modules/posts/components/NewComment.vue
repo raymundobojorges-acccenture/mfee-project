@@ -1,14 +1,20 @@
 <template>
   <div class="col-md-6 mt-5">
     <form>
-      <!-- Activity 11: Adding data binding */ -->
-      <input type="text" class="form-control" placeholder="Write a comment" />
+      <input type="text" class="form-control" placeholder="Write a comment" :class="{'is-invalid': false}"/>
 
       <span class="form-text text-danger"> Error </span>
     </form>
   </div>
   <div class="col-md-6">
-    <!-- Activity 10: Adding click events */ -->
-    <button class="btn btn-primary mt-2">Add</button>
+    <button @click="addComment" class="btn btn-primary mt-2">Add</button>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    addComment(){}
+  },
+}
+</script>
