@@ -78,9 +78,9 @@ export default {
       ]
     };
   },
-  created(){
+  created(){}
 
-}
+  /*   Activity 9: Create computed properties: Create a computed property that validates if posts array has elements */
 };
 </script>
 

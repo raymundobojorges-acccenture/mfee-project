@@ -3,6 +3,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header text-center">
+          <!-- Activity 11: Adding data binding */ -->
           <h5 class="modal-title">Action Post</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -44,11 +45,12 @@
 
 <script>
 export default {
-  created(){
-
-},
-unmounted(){
-
-}
+  data() {
+    return {
+      action: 'Create'
+    };
+  },
+  created(){},
+unmounted(){}
 };
 </script>

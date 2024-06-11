@@ -51,3 +51,4 @@
   top: 85%;
 }
 </style>
+<!-- Activity 10: Adding click events */ -->
