@@ -21,7 +21,7 @@ https://vuelidate-next.netlify.app/
 ## Render PostLayout.vue
 
 1. Existe el componente **/layouts/PostLayout.vue**, debes exportalo y rederizalo en **App.vue**
-   
+
 ## Render PostView.vue component
 
 1. Existe un archivo llamado **PostView.html**, copia y pega su contenido en el template de **PostView.vue**. Elimina el archivo html
@@ -40,4 +40,24 @@ https://vuelidate-next.netlify.app/
 1. Copiar y pegar todo el contenido del bloque de comentario **Inicio PostItem.vue** hasta **Fin PostItem.vue** dentro del template de **PostItem.vue**
 2. Existe un archivo llamado **PostItem.css** copia y pegar su contenido en el **<style>** del componente creado en el punto anterior.
 3. Renderizarlo una vez en el mismo lugar donde se encontraba su bloque de código.
+# Activities Session 02
+
+**Nota:** En estas actividades encontrarás archivos nuevos (**PostForm.vue**, **PostDetailView.vue**, **CommentItem.vue**, **NewComment.vue** y **CommentList.vue**), copia todo su contenido en tu proyecto (revisa que lo copies en el mismo path) y realiza la actividad indicada.
+
+## Add created hook
+
+1. Añade el hook **created()** en los componentes que indica
+
+## Add unmounted hook
+
+1. Añade el hook **unmounted()** en el componente que indica
+
+## Render components
+
+1. Renderiza el componente que indica cada comentario
+
+## Add v-for directive
+
+1. Añade la directiva **v-for** en cada componente que indican los comentarios
+2. Has uso del key
 
