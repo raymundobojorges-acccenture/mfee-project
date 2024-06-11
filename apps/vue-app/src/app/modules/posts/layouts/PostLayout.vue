@@ -1,4 +1,5 @@
 <template>
+  <!-- Activity 14: Vue router  -->
   <PostView/>
 </template>
 

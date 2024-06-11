@@ -65,3 +65,4 @@ export default{
   top: 85%;
 }
 </style>
+<!-- Activity 14: Vue router  -->

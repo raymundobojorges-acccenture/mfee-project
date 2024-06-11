@@ -32,6 +32,22 @@ export default {
       ]
     };
   },
-  created(){}
+  created(){},
+  methods: {
+    buildCategories() {
+      this.categories = [
+        {
+          id: '1',
+          name: 'All'
+        },
+        ...this.categories
+      ];
+
+      this.categories = this.categories.map((category) => ({
+        ...category,
+        active: category.name === 'All'
+      }));
+    }
+  }
 };
 </script>

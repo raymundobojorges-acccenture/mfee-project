@@ -1,5 +1,6 @@
 <template>
   <PostLayout/>
+  <!-- Activity 14: Vue router  -->
 </template>
 
 <script>
