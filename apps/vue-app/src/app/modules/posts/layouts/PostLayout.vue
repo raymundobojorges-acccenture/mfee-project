@@ -1,4 +1,3 @@
-<!-- Activity 2: Render PostView.vue component -->
 <template>
   <PostView/>
 </template>

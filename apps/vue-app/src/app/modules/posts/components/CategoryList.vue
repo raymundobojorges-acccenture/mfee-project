@@ -1,6 +1,6 @@
 <template>
   <div class="btn-group" role="group">
-    <CategoryItem/>
+    <CategoryItem v-for="category in categories" :key="category.id"/>
   </div>
 </template>
 
@@ -12,7 +12,6 @@ export default {
 
   data() {
     return {
-      /*   Activity 8: Add v-for directive: Use this array to iterate <CategoryItem> in the template */
       categories: [
         {
           id: 2,
@@ -32,7 +31,9 @@ export default {
         }
       ]
     };
+  },
+  created(){
+
   }
-  /*   Activity 5: Add created hook */
 };
 </script>

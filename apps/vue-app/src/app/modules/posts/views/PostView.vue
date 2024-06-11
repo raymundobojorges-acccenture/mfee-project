@@ -1,26 +1,10 @@
 <template>
-  <!-- Activity 3: Render Header components -->
 <HeaderPost/>
 <div class="row pt-5">
-  <!-- Activity 4: Render PostItem component -->
-  <PostItem/>
+  <PostItem v-for="post in posts" :key="post.id"/>
 </div>
 <div class="alert alert-warning m-3" role="alert">There are not results.</div>
 </template>
-
-<style>
-.sub-title {
-  color: #f0a441;
-  font-weight: 300;
-}
-.create-post {
-  height: 20px;
-  color: #f0a441;
-}
-.create-post:hover {
-  cursor: pointer;
-}
-</style>
 
 <script>
 import HeaderPost from '../components/HeaderPost.vue';
@@ -30,7 +14,6 @@ export default {
   components:{HeaderPost, PostItem},
   data() {
     return {
-      /*   Activity 8: Add v-for directive: Use this array to iterate <PostItem> in the template */
       posts: [
         {
           id: 1,
@@ -94,7 +77,23 @@ export default {
         }
       ]
     };
-  }
-  /*   Activity 5: Add created hook */
+  },
+  created(){
+
+}
 };
 </script>
+
+<style>
+.sub-title {
+  color: #f0a441;
+  font-weight: 300;
+}
+.create-post {
+  height: 20px;
+  color: #f0a441;
+}
+.create-post:hover {
+  cursor: pointer;
+}
+</style>
