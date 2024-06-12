@@ -63,5 +63,7 @@ export default {
 
     }
   }
+
+  /* Activity 15: Using axios */
 };
 </script>

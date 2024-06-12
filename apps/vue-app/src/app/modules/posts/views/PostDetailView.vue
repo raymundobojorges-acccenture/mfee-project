@@ -45,6 +45,8 @@ export default {
   created(){
     this.id = this.$route.params.id;
   },
+  /*   Activity 5: Add created hook */
+  /*   Activity 16: Forms */
 };
 </script>
 

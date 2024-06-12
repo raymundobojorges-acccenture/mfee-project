@@ -8,3 +8,5 @@ export const store = reactive({
     this.currentCategoryId = id;
   }
 });
+/* Activity 13: Reactivity API */
+/* Activity 15: Using axios */
