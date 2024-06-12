@@ -33,6 +33,7 @@ const post = {
  };
 
 function PostPage() {
+    // ACT 9 - Use postID variable to fetch the post data
   return (
     <Container container>
       <BannerContainer item>

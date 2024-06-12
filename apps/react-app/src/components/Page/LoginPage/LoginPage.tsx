@@ -22,7 +22,7 @@ const LoginPage = () => {
   const onSubmit = ( data: FormValues) => {
     console.log(data)
   }
-  
+    // ACT 9 - Use the login and register APIs
   return (
     <PageContainer container>
       <Grid item md={8} xs={8} lg={8}>

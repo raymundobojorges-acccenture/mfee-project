@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Grid, IconButton, Typography } from "@mui/material";
@@ -9,12 +10,12 @@ import {
   CardContent,
   PostCard,
 } from "./PostList.styles";
-import { Post } from "../../types";
+import { Post, Category } from "../../types";
 import { PostContext } from "../../context";
-import { useContext } from "react";
 
 interface PostListProps {
   posts: Post[];
+  selectedCategory: Category | null;
   handleOpenForm: (defaultValues?: Post) => void;
 }
 
