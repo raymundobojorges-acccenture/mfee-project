@@ -1,11 +1,23 @@
 <template>
-  <button @click="selectCategory" type="button" class="btn btn-light" :class="{active: false}">Category 1</button>
+  <button @click="selectCategory(category.id)" type="button" class="btn btn-light" :class="{active: false}">{{ category.name }}</button>
 </template>
 
 <script>
 export default {
+  props: {
+    category: {
+      type: {
+        active: false,
+        id: 0,
+        name: null,
+      },
+      required: true
+    }
+  },
   methods:{
-    selectCategory(id){}
+    selectCategory(id){
+      this.$emit('selectCategory', {id});
+    }
   }
 }
 </script>

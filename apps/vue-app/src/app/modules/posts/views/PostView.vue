@@ -1,7 +1,7 @@
 <template>
 <HeaderPost/>
 <div class="row pt-5">
-  <PostItem v-for="post in posts" :key="post.id"/>
+  <PostItem v-for="post in posts" :key="post.id" :post="post"/>
 </div>
 <div v-if="isPostsEmpty" class="alert alert-warning m-3" role="alert">There are not results.</div>
 </template>
@@ -25,7 +25,7 @@ export default {
             id: 2,
             name: 'Travel'
           },
-          comments: ['1st commend', '2do commnet', '3td comment']
+          comments: ['1st commend', '2do commnet', '3rd comment']
         },
         {
           id: 2,
@@ -37,10 +37,10 @@ export default {
             id: 4,
             name: 'Business'
           },
-          comments: ['1st commend', '2do commnet', '3td comment']
+          comments: ['1st commend', '2do commnet', '3rd comment']
         },
         {
-          id: 43,
+          id: 3,
           title: 'New York Offices',
           image: 'https://cdn.pixabay.com/photo/2024/01/25/12/54/building-8531835_960_720.jpg',
           description:
@@ -49,7 +49,7 @@ export default {
             id: 4,
             name: 'Business'
           },
-          comments: ['1st commend', '2do commnet', '3td comment']
+          comments: ['1st commend', '2do commnet', '3rd comment']
         },
         {
           id: 4,
@@ -61,10 +61,10 @@ export default {
             id: 3,
             name: 'Lifecycle'
           },
-          comments: ['1st commend', '2do commnet', '3td comment']
+          comments: ['1st commend', '2do commnet', '3rd comment']
         },
         {
-          id: 4,
+          id: 5,
           title: 'Apple Build',
           image: 'https://cdn.pixabay.com/photo/2018/12/20/12/38/architecture-3885905_960_720.jpg',
           description:
@@ -73,7 +73,7 @@ export default {
             id: 5,
             name: 'Work'
           },
-          comments: ['1st commend', '2do commnet', '3td comment']
+          comments: ['1st commend', '2do commnet', '3rd comment']
         }
       ]
     };
