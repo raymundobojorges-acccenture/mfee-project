@@ -8,7 +8,7 @@ export const categorySchema = new Schema<ICategory>(
   {
     name: {
       type: String,
-      required: [true, 'Property is required']
+      required: [true, 'Category is required']
     }
   },
   {
