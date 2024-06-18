@@ -19,7 +19,7 @@ interface PostListProps {
   handleOpenForm: (defaultValues?: Post) => void;
 }
 
-function PostList({ posts, handleOpenForm }: PostListProps) {
+function PostList({ posts, selectedCategory, handleOpenForm }: PostListProps) {
   const { removePost } = useContext(PostContext);
 
   return (
@@ -56,7 +56,7 @@ function PostList({ posts, handleOpenForm }: PostListProps) {
                 color="inherit"
                 onClick={(e) => {
                   e.stopPropagation();
-                  removePost(post.id);
+                  removePost({postID: post.id, selectedCategoryID: selectedCategory?.id,});
                 }}
               >
                 <DeleteIcon />
