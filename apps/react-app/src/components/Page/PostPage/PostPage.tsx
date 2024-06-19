@@ -11,6 +11,7 @@ import Loading from "../../Loading/Index";
 import { useState, useEffect, useCallback } from "react";
 import { Post, PostResponse, CommentResponse } from "../../../types";
 import { getPost } from "../../../api";
+import { useParams } from "react-router-dom";
 
 
 /*const post = {
@@ -40,12 +41,15 @@ import { getPost } from "../../../api";
 
 
 
-  const postID = "6661055a82f08e5ed86ae7f5"
+//const postID = "6661055a82f08e5ed86ae7f5"
+
 
 function PostPage() {
   // ACT 9 - Use postID variable to fetch the post data
   // ACT 10 - Get postID from route params
   const [post, setPost] = useState<Post>();
+
+  const { postID } = useParams();
 
     /*get post*/
     const getPostData = useCallback(
@@ -74,8 +78,9 @@ function PostPage() {
     /*+get post+*/
 
     useEffect(() => {
+      if(postID) 
       getPostData({postID})
-     }, [getPostData]);
+     }, [getPostData, postID]);
 
   if (!post) return <Loading />;
 
