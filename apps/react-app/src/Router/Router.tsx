@@ -21,11 +21,11 @@ const Router = createBrowserRouter([
   },
   {
     path : "/login",
-    element: <PrivateRoute route={<Page page={<LoginPage/>} />} />
+    element: <LoginPage/>
   },
   {
     path : "*",
-    element: <PrivateRoute route={<Page page={<NotFoundPage/>} />} />
+    element: <NotFoundPage/>
   },      
 ]);
 
