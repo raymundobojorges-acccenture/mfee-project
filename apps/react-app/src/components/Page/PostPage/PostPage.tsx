@@ -7,7 +7,14 @@ import {
   DescriptionContainer,
 } from "./PostPage.styles";
 
-const post = {
+import Loading from "../../Loading/Index";
+import { useState, useEffect, useCallback } from "react";
+import { Post, PostResponse, CommentResponse } from "../../../types";
+import { getPost } from "../../../api";
+import { useParams } from "react-router-dom";
+
+
+/*const post = {
   image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/30/90/8a/caption.jpg?w=1200&h=-1&s=1",
   title: "Chipinque",
   postID: "001",
@@ -30,10 +37,53 @@ const post = {
     },
    ],
    description: "Parque impresionante en un entorno boscoso, famoso por sus senderos naturales y un observatorio en la montaña.",
- };
+ };*/
+
+
+
+//const postID = "6661055a82f08e5ed86ae7f5"
+
 
 function PostPage() {
-    // ACT 9 - Use postID variable to fetch the post data
+  // ACT 9 - Use postID variable to fetch the post data
+  // ACT 10 - Get postID from route params
+  const [post, setPost] = useState<Post>();
+
+  const { postID } = useParams();
+
+    /*get post*/
+    const getPostData = useCallback(
+      async ({
+        postID
+      }: {
+        postID: string;
+      }) => {
+      const onSuccess = (data: PostResponse) => {
+  
+        const post : Post = {
+          id: data._id,
+          title: data.title,
+          image: data.image,
+          description: data.description,
+          category: data.category,
+          comments: ["", ""]     
+        }
+       
+        setPost(post);
+        console.log(data)
+      };
+  
+      await getPost({postID, onSuccess})
+    }, []);
+    /*+get post+*/
+
+    useEffect(() => {
+      if(postID) 
+      getPostData({postID})
+     }, [getPostData, postID]);
+
+  if (!post) return <Loading />;
+
   return (
     <Container container>
       <BannerContainer item>

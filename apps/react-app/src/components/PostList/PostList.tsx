@@ -12,6 +12,7 @@ import {
 } from "./PostList.styles";
 import { Post, Category } from "../../types";
 import { PostContext } from "../../context";
+import { NavLink } from "react-router-dom";
 
 interface PostListProps {
   posts: Post[];
@@ -19,7 +20,7 @@ interface PostListProps {
   handleOpenForm: (defaultValues?: Post) => void;
 }
 
-function PostList({ posts, handleOpenForm }: PostListProps) {
+function PostList({ posts, selectedCategory, handleOpenForm }: PostListProps) {
   const { removePost } = useContext(PostContext);
 
   return (
@@ -31,17 +32,23 @@ function PostList({ posts, handleOpenForm }: PostListProps) {
           key={post.id}
           image={post.image}
           md={posts.length === 1 ? 12 : 6}
-        >
+          // ACT 10 - Navigate to PostPage component and send postID as route params
+        > 
           <CardContainer>
-            <CardContent>
-              <h1>{post.title}</h1>
-              <h3>
-                {post.comments.length}
-                {post.comments.length > 1 ? " Comments" : " Comment"}
-              </h3>
-              <h3>{shorten(post.description, 70)}</h3>
-              <Typography variant="overline">{post.category?.name}</Typography>
-            </CardContent>
+            <NavLink to={`post/${post.id}`} style={{
+              textDecoration: "none",
+              color: "white"
+            }} >
+              <CardContent>
+                <h1>{post.title}</h1>
+                <h3>
+                  {post.comments.length}
+                  {post.comments.length > 1 ? " Comments" : " Comment"}
+                </h3>
+                <h3>{shorten(post.description, 70)}</h3>
+                <Typography variant="overline">{post.category?.name}</Typography>
+              </CardContent>
+            </NavLink>
             <CardActions className="card-actions">
               <IconButton
                 color="inherit"
@@ -56,7 +63,7 @@ function PostList({ posts, handleOpenForm }: PostListProps) {
                 color="inherit"
                 onClick={(e) => {
                   e.stopPropagation();
-                  removePost(post.id);
+                  removePost({postID: post.id, selectedCategoryID: selectedCategory?.id,});
                 }}
               >
                 <DeleteIcon />
