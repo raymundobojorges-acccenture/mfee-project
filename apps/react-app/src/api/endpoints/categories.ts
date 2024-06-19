@@ -5,6 +5,7 @@ import {
   // Category,
   CategoriesResponse,
   NewCategory
+  // NewCategory
 } from "../../types";
 
 export const getCategories = async ({

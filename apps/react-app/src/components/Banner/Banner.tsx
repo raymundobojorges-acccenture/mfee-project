@@ -9,7 +9,9 @@ function Banner({postImage, postTitle}:{postImage : string, postTitle: string })
     <Container image={postImage}>
       {/* ACT 3 - Send postImage as image prop to Container component */}
       <BannerContent>
-        <Button sx={{ color: "white" }} startIcon={<ArrowBackIosIcon />}>
+        <Button sx={{ color: "white" }} startIcon={<ArrowBackIosIcon />}
+        // ACT 10 - Navigate to Home page 
+        >
           View Posts
         </Button>
         <BannerTitle variant="h3">{postTitle}</BannerTitle>

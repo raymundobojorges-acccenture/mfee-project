@@ -43,7 +43,8 @@ import { getPost } from "../../../api";
   const postID = "6661055a82f08e5ed86ae7f5"
 
 function PostPage() {
-    // ACT 9 - Use postID variable to fetch the post data
+  // ACT 9 - Use postID variable to fetch the post data
+  // ACT 10 - Get postID from route params
   const [post, setPost] = useState<Post>();
 
     /*get post*/
@@ -53,14 +54,15 @@ function PostPage() {
       }: {
         postID: string;
       }) => {
-      const onSuccess = (data: PostResponse) => {        
+      const onSuccess = (data: PostResponse) => {
+  
         const post : Post = {
           id: data._id,
           title: data.title,
           image: data.image,
           description: data.description,
           category: data.category,
-          comments: []     
+          comments: ["", ""]     
         }
        
         setPost(post);
