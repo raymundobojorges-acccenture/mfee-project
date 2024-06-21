@@ -8,7 +8,7 @@ export default {
     category: {
       type: {
         active: false,
-        id: 0,
+        id: null,
         name: null,
       },
       required: true

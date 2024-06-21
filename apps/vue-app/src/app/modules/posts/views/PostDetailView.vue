@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card bg-dark text-white">
-        <img src="https://cdn.pixabay.com/photo/2017/02/22/17/06/wave-2089959_960_720.jpg" class="card-img" />
+        <img :src="post.image" class="card-img" />
         <div class="card-img-overlay">
           <div class="d-flex justify-content-start align-items-center ms-4" @click="$router.go(-1);">
             <i class="fa-solid fa-chevron-left me-2"></i>
@@ -12,7 +12,7 @@
         <div class="card-img-overlay text-center title">
           <div class="card-content">
             <h1 class="display-2">
-              <strong>Post title</strong>
+              <strong>{{ post.title }}</strong>
             </h1>
           </div>
         </div>
@@ -21,8 +21,8 @@
 
     <div class="col-md-12 bg-gray">
       <div class="container m-5">
-        <p class="fs-5">Post Description</p>
-        <CommentList/>
+        <p class="fs-5">{{ post.description }}</p>
+        <CommentList @addComment="(event) => updatePost(event)" :comments="post.comments"/>
       </div>
     </div>
   </div>
@@ -30,6 +30,7 @@
 
 <script>
 import CommentList from '../components/CommentList.vue';
+import { getPostById, updatePost } from '../helpers/posts';
 
 export default {
   components:{
@@ -39,12 +40,35 @@ export default {
       return{
       id: {
         type: String
+      },
+      post: {
+        title: "",
+        description: "",
+        image: "",
+        category: {
+          id: "",
+          name: ""
+        },
+        comments: [],
+        id: ""
       }
     }
   },
   created(){
     this.id = this.$route.params.id;
   },
+  mounted() {
+    this.getPostById();
+  },
+  methods: {
+    async getPostById () {
+      this.post = await getPostById(this.id);
+    },
+    async updatePost(event) {
+      this.post.comments.push(event.comment)
+      updatePost(this.post);
+    }
+  }
   /*   Activity 5: Add created hook */
   /*   Activity 16: Forms */
 };

@@ -6,6 +6,7 @@
 
 <script>
 import CategoryItem from './CategoryItem.vue';
+import { getCategories } from '../helpers/categories.js';
 import { store } from '../store/store.js';
 
 export default {
@@ -13,35 +14,18 @@ export default {
 
   data() {
     return {
-      categories: [
-        {
-          id: 2,
-          name: 'Travel'
-        },
-        {
-          id: 3,
-          name: 'Lifecycle'
-        },
-        {
-          id: 4,
-          name: 'Business'
-        },
-        {
-          id: 5,
-          name: 'Work'
-        }
-      ],
+      categories: [],
       store
     };
   },
   created(){
-    this.buildCategories();
+    this.getCategories();
   },
   methods: {
     buildCategories() {
       this.categories = [
         {
-          id: 1,
+          id: '1',
           name: 'All'
         },
         ...this.categories
@@ -61,6 +45,11 @@ export default {
         return { ...category, active: false };
       });
 
+      console.log(this.store.currentCategoryId)
+    },
+    async getCategories() {
+      this.categories = await getCategories();
+      this.buildCategories();
     }
   }
 

@@ -3,39 +3,66 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h5 class="modal-title"> {{ modalTitle }} Post</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title">{{ modalTitle }} Post</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            @click="resetForm()"
+          ></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form @submit.prevent="handleSubmit()">
             <div class="form-group pb-3">
               <label>Title</label>
-              <input type="text" class="form-control" />
-              <span class="form-text text-danger"> Error </span>
+              <input v-model="formData.title" type="text" class="form-control" />
+              <span v-if="v$.formData.title.$invalid" class="form-text text-danger">
+                Error
+              </span>
             </div>
             <div class="form-group pb-3">
               <label>Description</label>
-              <textarea class="form-control" rows="2"></textarea>
-              <span class="form-text text-danger"> Error </span>
+              <textarea
+                v-model="formData.description"
+                class="form-control"
+                rows="2"
+              ></textarea>
+              <span v-if="v$.formData.description.$invalid" class="form-text text-danger">
+                Error
+              </span>
             </div>
             <div class="form-group pb-3">
               <label>Category</label>
-              <select class="form-select">
-                <option>Categoria 1</option>
-                <option>Categoria 2</option>
+              <select v-model="formData.categoryId" class="form-select">
+                <option v-for="category in categories" :key="category.id" :value="category.id">
+                  {{ category.name }}
+                </option>
               </select>
-              <span class="form-text text-danger"> Error </span>
+              <span v-if="v$.formData.categoryId.$invalid" class="form-text text-danger">
+                Error
+              </span>
             </div>
             <div class="form-group">
               <label>URL of the image</label>
-              <input type="text" class="form-control" />
-              <span class="form-text text-danger"> Error </span>
+              <input v-model="formData.image" type="text" class="form-control" />
+              <span v-if="v$.formData.image.$invalid" class="form-text text-danger">
+                Error
+              </span>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                ref="btnCloseModal"
+                @click="resetForm()"
+              >
+                Cancel
+              </button>
+              <button class="btn btn-primary" type="submit">Save</button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ref="btnCloseModal">Cancel</button>
-          <button class="btn btn-primary">Save</button>
         </div>
       </div>
     </div>
@@ -43,17 +70,84 @@
 </template>
 
 <script>
+import useVuelidate from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
+import { getCategories } from "../helpers/categories.js";
+import { createPost } from "../helpers/posts.js";
+import { store } from '../store/store.js';
+
 export default {
   data() {
     return {
-      action: 'Create',
-      modalTitle: 'Action'
+      action: "Create",
+      modalTitle: "Action",
+      categories: [],
+      formData: {
+        id: "",
+        title: "",
+        description: "",
+        categoryId: "",
+        image: "",
+        comments: [],
+      },
+      store,
     };
   },
-  created(){},
-  unmounted(){}
-  /*   Activity 5: Add created hook */
-  /*   Activity 6: Add unmounted hook */
-  /*   Activity 16: Forms */
+  validations() {
+    return {
+      formData: {
+        title: { required },
+        description: { required },
+        categoryId: { required },
+        image: { required },
+      },
+    };
+  },
+  setup() {
+    return { v$: useVuelidate() };
+  },
+  created() {
+    this.getCategories();
+  },
+  unmounted() {},
+  methods: {
+    async getCategories() {
+      this.categories = await getCategories();
+    },
+    async handleSubmit() {
+      this.v$.$touch();
+      if (this.v$.$invalid) {
+        console.log("Error in Post Form");
+      } else {
+        let post = {
+          id: Date.now().toString(),
+          title: this.formData.title,
+          description: this.formData.description,
+          image: this.formData.image,
+          category: {
+            id: this.formData.categoryId,
+            name: this.categories.find((category) => category.id === this.formData.categoryId).name,
+          },
+          comments: [],
+        };
+        await createPost(post);
+        this.store.getPosts();
+        this.$refs.btnCloseModal.click();
+        this.resetForm();
+      }
+    },
+    resetForm() {
+      this.formData = {
+        id: "",
+        title: "",
+        description: "",
+        categoryId: "",
+        image: "",
+        comments: [],
+      };
+
+      this.v$.reset();
+    }
+  },
 };
 </script>
