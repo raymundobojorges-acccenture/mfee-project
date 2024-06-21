@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h5 class="modal-title">{{ modalTitle }} Post</h5>
+          <h5 class="modal-title">{{ action }} Post</h5>
           <button
             type="button"
             class="btn-close"
@@ -73,10 +73,13 @@
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import { getCategories } from "../helpers/categories.js";
-import { createPost } from "../helpers/posts.js";
+import { createPost, updatePost } from "../helpers/posts.js";
 import { store } from '../store/store.js';
 
 export default {
+  setup() {
+    return { v$: useVuelidate() };
+  },
   data() {
     return {
       action: "Create",
@@ -103,13 +106,29 @@ export default {
       },
     };
   },
-  setup() {
-    return { v$: useVuelidate() };
+  watch: {
+    'store.postEditing'(newValue) {
+      if(newValue) {
+        this.action = 'Edit';
+        this.formData.id = newValue.id;
+        this.formData.title = newValue.title;
+        this.formData.description = newValue.description;
+        this.formData.image = newValue.image;
+        this.formData.comments = newValue.comments;
+        this.formData.categoryId = newValue.category.id;
+      }
+      else {
+        this.action = 'Create'
+      }
+    }
   },
   created() {
     this.getCategories();
   },
-  unmounted() {},
+  unmounted() {
+    console.log('unmount')
+    this.store.setPostEditing(null);
+  },
   methods: {
     async getCategories() {
       this.categories = await getCategories();
@@ -120,7 +139,7 @@ export default {
         console.log("Error in Post Form");
       } else {
         let post = {
-          id: Date.now().toString(),
+          id: this.formData.id != "" ? this.formData.id : Date.now().toString(),
           title: this.formData.title,
           description: this.formData.description,
           image: this.formData.image,
@@ -128,15 +147,22 @@ export default {
             id: this.formData.categoryId,
             name: this.categories.find((category) => category.id === this.formData.categoryId).name,
           },
-          comments: [],
+          comments: this.formData.comments,
         };
-        await createPost(post);
+
+        if (this.store.postEditing) {
+          await updatePost(post);
+        }
+        else {
+          await createPost(post);
+        }
         this.store.getPosts();
-        this.$refs.btnCloseModal.click();
         this.resetForm();
       }
     },
     resetForm() {
+      this.$refs.btnCloseModal.click();
+
       this.formData = {
         id: "",
         title: "",
@@ -145,8 +171,6 @@ export default {
         image: "",
         comments: [],
       };
-
-      this.v$.reset();
     }
   },
 };

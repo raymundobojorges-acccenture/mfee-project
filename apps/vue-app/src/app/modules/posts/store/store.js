@@ -4,10 +4,13 @@ import { getPosts } from '../helpers/posts.js';
 export const store = reactive({
   currentCategoryId: '1',
   posts: [],
+  postEditing: null,
 
   setCurrentCategory(id) {
-    //debugger
     this.currentCategoryId = id;
+  },
+  setPostEditing(post){
+    this.postEditing = post;
   },
   async getPosts() {
     this.posts = await getPosts();

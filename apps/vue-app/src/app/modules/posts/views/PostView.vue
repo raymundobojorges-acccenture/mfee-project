@@ -32,7 +32,6 @@ export default {
   },
   created(){
     this.store.getPosts();
-    //this.getPosts();
   },
   methods: {
     async getPosts() {

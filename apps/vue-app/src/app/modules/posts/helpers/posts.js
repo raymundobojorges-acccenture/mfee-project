@@ -13,7 +13,7 @@ export const getPosts = async () => {
   return posts;
 };
 
-export const getPostById = async (id) => {
+export const getById = async (id) => {
   let post = [];
 
   await postsApi

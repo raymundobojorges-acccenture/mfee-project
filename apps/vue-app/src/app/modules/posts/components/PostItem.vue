@@ -26,7 +26,17 @@
 </template>
 
 <script>
+import { store } from '../store/store.js'
+import { deletePost } from "../helpers/posts.js";
+import { alerts } from '../helpers/alerts.js';
+
 export default {
+  mixins: [alerts],
+  data() {
+    return {
+      store,
+    }
+  },
   props:{
     post:{
       type: {
@@ -48,9 +58,28 @@ export default {
       this.$router.push({ path: `/post-detail/${id}` });
     },
     editPost(){
+      this.store.setPostEditing(this.post);
     },
-    deletePost(){
-    }
+    async deletePost(){
+      this.$swal({
+        position: 'top-end',
+        icon: 'warning',
+        title: 'Do you want to delete this post?',
+        showConfirmButton: true,
+        showCancelButton: true
+      }).then(async (result) => {
+        if(result.isConfirmed) {
+          try {
+            await deletePost(this.post.id);
+            this.showAlert('success', 'Post deleted successfully');
+            this.store.getPosts();
+          } catch(e) {
+            this.showAlert('error', 'Could not delete post');
+          }
+        }
+      });
+
+    },
   }
 }
 </script>

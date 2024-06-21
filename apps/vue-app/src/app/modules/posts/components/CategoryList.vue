@@ -45,7 +45,6 @@ export default {
         return { ...category, active: false };
       });
 
-      console.log(this.store.currentCategoryId)
     },
     async getCategories() {
       this.categories = await getCategories();
