@@ -39,7 +39,7 @@
     "tslib": "^2.3.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
-    "vue-sweetalert2": "^5.0.5",
+    "vue-sweetalert2": "^5.0.11",
     "zone.js": "~0.14.0"
   },
   "devDependencies": {
