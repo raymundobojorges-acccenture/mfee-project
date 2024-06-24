@@ -1,4 +1,13 @@
-<!-- Activity 2: Render PostView.vue component -->
+<!--✅ Activity 2: Render PostView.vue component -->
 <template>
-  <h1>TODO: Eliminar este h1 cuando se haga la actividad</h1>
+  <PostView></PostView>
+<!--✅ Activity 14: Vue router  -->
 </template>
+
+<script>
+import PostView from '../views/PostView.vue';
+export default {
+  name: 'PostLayout',
+  components: { PostView }
+};
+</script>
